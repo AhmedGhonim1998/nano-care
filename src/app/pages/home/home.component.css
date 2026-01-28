@@ -26,15 +26,15 @@
 }
 
 .animate-float {
-  animation: float 6s ease-in-out infinite;
+  animation: float 6s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
 }
 
 .animate-float-slow {
-  animation: float-slow 4s ease-in-out infinite;
+  animation: float-slow 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
 }
 
 .animate-pulse-slow {
-  animation: pulse-slow 3s ease-in-out infinite;
+  animation: pulse-slow 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
 }
 
 /* Smooth transitions */
@@ -60,4 +60,15 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(to bottom, #2563eb, #0891b2);
+}
+
+/* Mobile responsive animations */
+@media (max-width: 640px) {
+  .animate-float {
+    animation: float 6s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+  }
+  
+  .animate-float-slow {
+    animation: float-slow 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+  }
 }
