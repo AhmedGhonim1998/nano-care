@@ -1,5 +1,7 @@
 # NanoCare
 
+> **⚠️ Note:** This is a development fork/clone. This is not the official NanoCare repository.
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.0.
 
 ## Development server
