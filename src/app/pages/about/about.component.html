@@ -1,13 +1,13 @@
 <section class="relative min-h-screen overflow-hidden bg-gradient-to-b from-white via-blue-50/20 to-white">
   <!-- Background Elements -->
   <div class="absolute inset-0 overflow-hidden">
-    <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-blue-500/5 to-cyan-500/5 rounded-full blur-3xl -mr-48 -mt-48"></div>
-    <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gradient-to-tr from-sky-500/5 to-blue-500/5 rounded-full blur-3xl -ml-48 -mb-48"></div>
+    <div class="absolute top-0 right-0 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-gradient-to-br from-blue-500/5 to-cyan-500/5 rounded-full blur-3xl -mr-24 md:-mr-48 -mt-24 md:-mt-48"></div>
+    <div class="absolute bottom-0 left-0 w-[250px] h-[250px] md:w-[500px] md:h-[500px] bg-gradient-to-tr from-sky-500/5 to-blue-500/5 rounded-full blur-3xl -ml-24 md:-ml-48 -mb-24 md:-mb-48"></div>
   </div>
 
   <!-- Animated DNA Structure -->
   <div class="absolute inset-0 pointer-events-none">
-    <div class="absolute top-1/4 left-1/4 w-64 h-64">
+    <div class="absolute top-1/4 left-1/4 w-40 h-40 md:w-64 md:h-64">
       <div class="absolute inset-0 animate-pulse-slow">
         <svg class="w-full h-full" viewBox="0 0 200 200">
           <path d="M100,20 C120,40 140,60 160,80 C180,100 180,120 160,140 C140,160 120,180 100,180 C80,180 60,160 40,140 C20,120 20,100 40,80 C60,60 80,40 100,20Z" 
@@ -17,16 +17,16 @@
     </div>
   </div>
 
-  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-32">
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-24 lg:pt-32 pb-16 md:pb-24 lg:pb-32">
     
     <!-- Hero Section -->
-    <div class="text-center max-w-4xl mx-auto mb-24">
-      <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-full mb-6">
-        <div class="w-2 h-2 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full animate-pulse"></div>
-        <span class="text-xs font-black tracking-[0.3em] text-blue-600 uppercase">Our Cellular Revolution</span>
+    <div class="text-center max-w-4xl mx-auto mb-12 md:mb-16 lg:mb-24">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 bg-blue-50 rounded-full mb-4 md:mb-6">
+        <div class="w-1.5 h-1.5 md:w-2 md:h-2 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full animate-pulse"></div>
+        <span class="text-[10px] md:text-xs font-black tracking-[0.2em] md:tracking-[0.3em] text-blue-600 uppercase">Our Cellular Revolution</span>
       </div>
       
-      <h1 class="text-5xl md:text-7xl lg:text-8xl font-black mb-8 leading-[0.9] tracking-tighter">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-black mb-4 md:mb-6 lg:mb-8 leading-[1.1] md:leading-[0.9] tracking-tight md:tracking-tighter">
         <span class="block text-slate-900">Redefining</span>
         <span class="bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-700 bg-clip-text text-transparent">
           Cellular
@@ -34,221 +34,230 @@
         <span class="block text-slate-900">Wellness</span>
       </h1>
       
-      <p class="text-xl md:text-2xl text-slate-600 leading-relaxed mb-6 font-medium">
+      <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-600 leading-relaxed mb-4 md:mb-6 font-medium px-2 sm:px-0">
         At NanoCare, we don't just create supplements—we engineer <span class="font-bold text-blue-600">cellular transformation</span> 
         through advanced liposomal technology that delivers nutrients with unprecedented precision.
       </p>
       
-      <div class="flex items-center justify-center gap-6 mt-10">
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 mt-6 md:mt-8 lg:mt-10">
         <div class="flex items-center gap-2">
-          <div class="w-3 h-3 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full animate-pulse"></div>
+          <div class="w-2.5 h-2.5 md:w-3 md:h-3 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full animate-pulse"></div>
           <span class="text-sm font-bold text-slate-700">Egyptian Innovation</span>
         </div>
-        <div class="h-4 w-px bg-slate-300"></div>
+        <div class="hidden sm:block h-4 w-px bg-slate-300"></div>
         <div class="flex items-center gap-2">
-          <div class="w-3 h-3 bg-gradient-to-r from-emerald-500 to-green-400 rounded-full animate-pulse"></div>
+          <div class="w-2.5 h-2.5 md:w-3 md:h-3 bg-gradient-to-r from-emerald-500 to-green-400 rounded-full animate-pulse"></div>
           <span class="text-sm font-bold text-slate-700">Global Standards</span>
         </div>
       </div>
     </div>
 
     <!-- Stats Grid -->
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-32">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-16 md:mb-24 lg:mb-32">
       <div class="group relative">
-        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-        <div class="relative bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-slate-200/50 group-hover:border-blue-200 group-hover:shadow-2xl transition-all duration-500">
-          <div class="text-5xl font-black bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent mb-2">98%</div>
-          <div class="text-sm font-bold text-slate-600 uppercase tracking-widest">Absorption Rate</div>
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-2xl md:rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+        <div class="relative bg-white/80 backdrop-blur-sm rounded-2xl md:rounded-3xl p-6 md:p-8 border border-slate-200/50 group-hover:border-blue-200 group-hover:shadow-xl md:group-hover:shadow-2xl transition-all duration-500">
+          <div class="text-3xl sm:text-4xl md:text-5xl font-black bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent mb-2">98%</div>
+          <div class="text-xs md:text-sm font-bold text-slate-600 uppercase tracking-wider md:tracking-widest">Absorption Rate</div>
           <p class="text-xs text-slate-500 mt-2">Highest in the industry</p>
         </div>
       </div>
       
       <div class="group relative">
-        <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-green-500/10 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-        <div class="relative bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-slate-200/50 group-hover:border-emerald-200 group-hover:shadow-2xl transition-all duration-500">
-          <div class="text-5xl font-black bg-gradient-to-r from-emerald-600 to-green-500 bg-clip-text text-transparent mb-2">10K+</div>
-          <div class="text-sm font-bold text-slate-600 uppercase tracking-widest">Transformed Lives</div>
+        <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-green-500/10 rounded-2xl md:rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+        <div class="relative bg-white/80 backdrop-blur-sm rounded-2xl md:rounded-3xl p-6 md:p-8 border border-slate-200/50 group-hover:border-emerald-200 group-hover:shadow-xl md:group-hover:shadow-2xl transition-all duration-500">
+          <div class="text-3xl sm:text-4xl md:text-5xl font-black bg-gradient-to-r from-emerald-600 to-green-500 bg-clip-text text-transparent mb-2">10K+</div>
+          <div class="text-xs md:text-sm font-bold text-slate-600 uppercase tracking-wider md:tracking-widest">Transformed Lives</div>
           <p class="text-xs text-slate-500 mt-2">Across Egypt & MENA</p>
         </div>
       </div>
       
       <div class="group relative">
-        <div class="absolute inset-0 bg-gradient-to-br from-amber-500/10 to-orange-500/10 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-        <div class="relative bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-slate-200/50 group-hover:border-amber-200 group-hover:shadow-2xl transition-all duration-500">
-          <div class="text-5xl font-black bg-gradient-to-r from-amber-600 to-orange-500 bg-clip-text text-transparent mb-2">34x</div>
-          <div class="text-sm font-bold text-slate-600 uppercase tracking-widest">Higher Bioavailability</div>
+        <div class="absolute inset-0 bg-gradient-to-br from-amber-500/10 to-orange-500/10 rounded-2xl md:rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+        <div class="relative bg-white/80 backdrop-blur-sm rounded-2xl md:rounded-3xl p-6 md:p-8 border border-slate-200/50 group-hover:border-amber-200 group-hover:shadow-xl md:group-hover:shadow-2xl transition-all duration-500">
+          <div class="text-3xl sm:text-4xl md:text-5xl font-black bg-gradient-to-r from-amber-600 to-orange-500 bg-clip-text text-transparent mb-2">34x</div>
+          <div class="text-xs md:text-sm font-bold text-slate-600 uppercase tracking-wider md:tracking-widest">Higher Bioavailability</div>
           <p class="text-xs text-slate-500 mt-2">vs traditional supplements</p>
         </div>
       </div>
       
       <div class="group relative">
-        <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-        <div class="relative bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-slate-200/50 group-hover:border-purple-200 group-hover:shadow-2xl transition-all duration-500">
-          <div class="text-5xl font-black bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent mb-2">0%</div>
-          <div class="text-sm font-bold text-slate-600 uppercase tracking-widest">Compromise</div>
+        <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-2xl md:rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+        <div class="relative bg-white/80 backdrop-blur-sm rounded-2xl md:rounded-3xl p-6 md:p-8 border border-slate-200/50 group-hover:border-purple-200 group-hover:shadow-xl md:group-hover:shadow-2xl transition-all duration-500">
+          <div class="text-3xl sm:text-4xl md:text-5xl font-black bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent mb-2">0%</div>
+          <div class="text-xs md:text-sm font-bold text-slate-600 uppercase tracking-wider md:tracking-widest">Compromise</div>
           <p class="text-xs text-slate-500 mt-2">On purity & quality</p>
         </div>
       </div>
     </div>
 
     <!-- Story Section -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-32">
-      <div class="space-y-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center mb-16 md:mb-24 lg:mb-32">
+      <div class="space-y-6 md:space-y-8 order-2 lg:order-1">
         <div>
-          <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-full mb-6">
-            <div class="w-2 h-2 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full"></div>
-            <span class="text-xs font-bold text-blue-600 uppercase tracking-widest">Our Origin Story</span>
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 bg-blue-50 rounded-full mb-4 md:mb-6">
+            <div class="w-1.5 h-1.5 md:w-2 md:h-2 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full"></div>
+            <span class="text-xs font-bold text-blue-600 uppercase tracking-wider md:tracking-widest">Our Origin Story</span>
           </div>
           
-          <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6 leading-tight">
+          <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 mb-4 md:mb-6 leading-tight">
             From Egyptian Vision to <span class="text-blue-600">Global Innovation</span>
           </h2>
           
-          <div class="space-y-4">
-            <p class="text-lg text-slate-600 leading-relaxed">
+          <div class="space-y-3 md:space-y-4">
+            <p class="text-base md:text-lg text-slate-600 leading-relaxed">
               Founded in Cairo in 2023, NanoCare emerged from a simple observation: 
               <span class="font-bold text-slate-900">90% of traditional supplements were being destroyed by stomach acid</span> 
               before reaching their target cells. Our Egyptian founders, combining backgrounds in 
               pharmaceuticals and nanotechnology, asked one revolutionary question:
             </p>
             
-            <blockquote class="relative pl-6 border-l-4 border-blue-500 my-8">
-              <p class="text-xl text-slate-800 italic leading-relaxed">
+            <blockquote class="relative pl-4 md:pl-6 border-l-3 md:border-l-4 border-blue-500 my-6 md:my-8">
+              <p class="text-lg md:text-xl text-slate-800 italic leading-relaxed">
                 "What if we could protect nutrients all the way to the cellular level, 
                 ensuring every gram delivers maximum impact?"
               </p>
             </blockquote>
             
-            <p class="text-lg text-slate-600 leading-relaxed">
+            <p class="text-base md:text-lg text-slate-600 leading-relaxed">
               Today, NanoCare stands as <span class="font-bold text-blue-600">Egypt's first and leading liposomal supplement company</span>, 
               bridging cutting-edge nanotechnology with centuries of Egyptian wellness wisdom.
             </p>
           </div>
         </div>
         
-        <div class="flex flex-wrap gap-4 pt-6">
-          <div class="flex items-center gap-3 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl px-4 py-3">
-            <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-xl flex items-center justify-center">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4 pt-4 md:pt-6">
+          <div class="flex items-center gap-3 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl md:rounded-2xl px-4 py-3 flex-1 min-w-[200px]">
+            <div class="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-lg md:rounded-xl flex items-center justify-center shrink-0">
+              <svg class="w-4 h-4 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
               </svg>
             </div>
             <div>
-              <div class="font-bold text-slate-900">GMP Certified</div>
+              <div class="font-bold text-slate-900 text-sm md:text-base">GMP Certified</div>
               <div class="text-xs text-slate-600">Pharmaceutical Standards</div>
             </div>
           </div>
           
-          <div class="flex items-center gap-3 bg-gradient-to-r from-emerald-50 to-green-50 rounded-2xl px-4 py-3">
-            <div class="w-10 h-10 bg-gradient-to-r from-emerald-500 to-green-400 rounded-xl flex items-center justify-center">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div class="flex items-center gap-3 bg-gradient-to-r from-emerald-50 to-green-50 rounded-xl md:rounded-2xl px-4 py-3 flex-1 min-w-[200px]">
+            <div class="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-r from-emerald-500 to-green-400 rounded-lg md:rounded-xl flex items-center justify-center shrink-0">
+              <svg class="w-4 h-4 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
               </svg>
             </div>
             <div>
-              <div class="font-bold text-slate-900">ISO Certified</div>
+              <div class="font-bold text-slate-900 text-sm md:text-base">ISO Certified</div>
               <div class="text-xs text-slate-600">Quality Management</div>
             </div>
           </div>
         </div>
       </div>
       
-      <div class="relative">
-  <div class="relative rounded-[3rem] overflow-hidden shadow-2xl group">
-    <div class="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 z-10"></div>
-    <img src="assets/coverImages/nanocareBottel.jpeg" alt="NanoCare Research Lab" class="w-full h-[500px] object-cover group-hover:scale-105 transition-transform duration-700">
-  </div>
-  
-  <div class="absolute -bottom-6 -right-6 bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-2xl border border-slate-200 z-20">
-    <div class="text-center">
-      <div class="text-3xl font-black text-blue-600 mb-1">2023</div>
-      <div class="text-xs font-bold text-slate-600 uppercase tracking-widest">Founded in Cairo</div>
-    </div>
-  </div>
-</div>
+      <div class="relative order-1 lg:order-2">
+        <div class="relative rounded-2xl md:rounded-3xl lg:rounded-[3rem] overflow-hidden shadow-xl md:shadow-2xl group">
+          <div class="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 z-10"></div>
+          <img src="assets/coverImages/nanocareBottel.jpeg" alt="NanoCare Research Lab" class="w-full h-[300px] md:h-[400px] lg:h-[500px] object-cover group-hover:scale-105 transition-transform duration-700">
+        </div>
+        
+        <div class="absolute -bottom-4 -right-4 md:-bottom-6 md:-right-6 bg-white/90 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-6 shadow-xl md:shadow-2xl border border-slate-200 z-20 w-24 h-24 md:w-auto md:h-auto">
+          <div class="text-center">
+            <div class="text-xl md:text-3xl font-black text-blue-600 mb-1">2023</div>
+            <div class="text-[10px] md:text-xs font-bold text-slate-600 uppercase tracking-wider md:tracking-widest">Founded in Cairo</div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Technology Innovation -->
-    <div class="bg-gradient-to-br from-slate-900 to-blue-900 rounded-[4rem] p-12 md:p-20 text-white overflow-hidden relative mb-32">
-      <div class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-l from-blue-500/20 to-cyan-500/20 rounded-full blur-3xl -mr-48 -mt-48"></div>
-      <div class="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-full blur-3xl -ml-48 -mb-48"></div>
+    <div class="bg-gradient-to-br from-slate-900 to-blue-900 rounded-3xl md:rounded-[4rem] p-6 md:p-12 lg:p-20 text-white overflow-hidden relative mb-16 md:mb-24 lg:mb-32">
+      <div class="absolute top-0 right-0 w-48 h-48 md:w-96 md:h-96 bg-gradient-to-l from-blue-500/20 to-cyan-500/20 rounded-full blur-3xl -mr-24 md:-mr-48 -mt-24 md:-mt-48"></div>
+      <div class="absolute bottom-0 left-0 w-48 h-48 md:w-96 md:h-96 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-full blur-3xl -ml-24 md:-ml-48 -mb-24 md:-mb-48"></div>
       
       <div class="relative z-10">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full mb-6">
-            <div class="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
-            <span class="text-xs font-bold text-cyan-300 uppercase tracking-widest">Our Technological Edge</span>
+        <div class="text-center max-w-3xl mx-auto mb-8 md:mb-12 lg:mb-16">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 bg-white/10 backdrop-blur-sm rounded-full mb-4 md:mb-6">
+            <div class="w-1.5 h-1.5 md:w-2 md:h-2 bg-cyan-400 rounded-full animate-pulse"></div>
+            <span class="text-xs font-bold text-cyan-300 uppercase tracking-wider md:tracking-widest">Our Technological Edge</span>
           </div>
           
-          <h2 class="text-4xl md:text-5xl font-black mb-6">
+          <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black mb-4 md:mb-6">
             The Science Behind <span class="text-cyan-400">Every Capsule</span>
           </h2>
           
-          <p class="text-xl text-blue-200/80 leading-relaxed">
+          <p class="text-base md:text-xl text-blue-200/80 leading-relaxed px-2 sm:px-0">
             NanoCare's proprietary liposomal technology creates microscopic protective bubbles 
             that shield nutrients through harsh digestive environments, delivering them intact 
             directly to your cells.
           </p>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch"> <div class="group relative h-full"> <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-    <div class="relative bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10 group-hover:border-cyan-500/30 transition-all duration-500 h-full flex flex-col"> <div class="w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-2xl flex items-center justify-center mb-6 shrink-0">
-        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-      </div>
-      <h3 class="text-xl font-bold mb-3">Nano-Encapsulation</h3>
-      <p class="text-blue-200/70 text-sm leading-relaxed flex-grow"> Each nutrient is encapsulated in phospholipid bubbles smaller than 200 nanometers, allowing direct cellular absorption.
-      </p>
-    </div>
-  </div>
-  
-  <div class="group relative h-full">
-    <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-    <div class="relative bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10 group-hover:border-blue-500/30 transition-all duration-500 h-full flex flex-col">
-      <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center mb-6 shrink-0">
-        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
-      </div>
-      <h3 class="text-xl font-bold mb-3">Targeted Delivery</h3>
-      <p class="text-blue-200/70 text-sm leading-relaxed flex-grow">
-        Liposomes fuse directly with cell membranes, delivering nutrients precisely where they're needed most.
-      </p>
-    </div>
-  </div>
-  
-  <div class="group relative h-full">
-    <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-green-500/10 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-    <div class="relative bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10 group-hover:border-emerald-500/30 transition-all duration-500 h-full flex flex-col">
-      <div class="w-16 h-16 bg-gradient-to-r from-emerald-500 to-green-500 rounded-2xl flex items-center justify-center mb-6 shrink-0">
-        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-      </div>
-      <h3 class="text-xl font-bold mb-3">Third-Party Verification</h3>
-      <p class="text-blue-200/70 text-sm leading-relaxed flex-grow">
-        Every batch undergoes independent laboratory testing for purity, potency, and heavy metal screening.
-      </p>
-    </div>
-  </div>
-
-</div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 items-stretch">
+          <div class="group relative h-full">
+            <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-2xl md:rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+            <div class="relative bg-white/5 backdrop-blur-sm rounded-2xl md:rounded-3xl p-6 md:p-8 border border-white/10 group-hover:border-cyan-500/30 transition-all duration-500 h-full flex flex-col">
+              <div class="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl md:rounded-2xl flex items-center justify-center mb-4 md:mb-6 shrink-0">
+                <svg class="w-6 h-6 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+              </div>
+              <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3">Nano-Encapsulation</h3>
+              <p class="text-blue-200/70 text-sm leading-relaxed flex-grow">
+                Each nutrient is encapsulated in phospholipid bubbles smaller than 200 nanometers, allowing direct cellular absorption.
+              </p>
+            </div>
+          </div>
+          
+          <div class="group relative h-full">
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-2xl md:rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+            <div class="relative bg-white/5 backdrop-blur-sm rounded-2xl md:rounded-3xl p-6 md:p-8 border border-white/10 group-hover:border-blue-500/30 transition-all duration-500 h-full flex flex-col">
+              <div class="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl md:rounded-2xl flex items-center justify-center mb-4 md:mb-6 shrink-0">
+                <svg class="w-6 h-6 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+                </svg>
+              </div>
+              <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3">Targeted Delivery</h3>
+              <p class="text-blue-200/70 text-sm leading-relaxed flex-grow">
+                Liposomes fuse directly with cell membranes, delivering nutrients precisely where they're needed most.
+              </p>
+            </div>
+          </div>
+          
+          <div class="group relative h-full">
+            <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-green-500/10 rounded-2xl md:rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+            <div class="relative bg-white/5 backdrop-blur-sm rounded-2xl md:rounded-3xl p-6 md:p-8 border border-white/10 group-hover:border-emerald-500/30 transition-all duration-500 h-full flex flex-col">
+              <div class="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r from-emerald-500 to-green-500 rounded-xl md:rounded-2xl flex items-center justify-center mb-4 md:mb-6 shrink-0">
+                <svg class="w-6 h-6 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3">Third-Party Verification</h3>
+              <p class="text-blue-200/70 text-sm leading-relaxed flex-grow">
+                Every batch undergoes independent laboratory testing for purity, potency, and heavy metal screening.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- Core Values -->
-    <div class="mb-32">
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6">
+    <div class="mb-16 md:mb-24 lg:mb-32">
+      <div class="text-center max-w-3xl mx-auto mb-8 md:mb-12 lg:mb-16">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 mb-4 md:mb-6">
           The Pillars of <span class="text-blue-600">Our Promise</span>
         </h2>
-        <p class="text-xl text-slate-600 leading-relaxed">
+        <p class="text-base md:text-xl text-slate-600 leading-relaxed px-4 sm:px-0">
           These principles guide every decision we make, from ingredient sourcing to customer care.
         </p>
       </div>
       
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
         <div class="group relative">
-          <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-3xl opacity-0 group-hover:opacity-20 blur transition-all duration-500"></div>
-          <div class="relative bg-gradient-to-b from-white to-slate-50 rounded-3xl p-8 border border-slate-200 group-hover:border-blue-200 transition-all duration-500">
-            <div class="text-6xl font-black text-slate-400 mb-4">01</div>
-            <h3 class="text-2xl font-bold text-slate-900 mb-4">Uncompromising Integrity</h3>
-            <p class="text-slate-600 leading-relaxed mb-6">
+          <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-2xl md:rounded-3xl opacity-0 group-hover:opacity-20 blur transition-all duration-500"></div>
+          <div class="relative bg-gradient-to-b from-white to-slate-50 rounded-2xl md:rounded-3xl p-6 md:p-8 border border-slate-200 group-hover:border-blue-200 transition-all duration-500">
+            <div class="text-4xl md:text-5xl lg:text-6xl font-black text-slate-400 mb-3 md:mb-4">01</div>
+            <h3 class="text-xl md:text-2xl font-bold text-slate-900 mb-3 md:mb-4">Uncompromising Integrity</h3>
+            <p class="text-slate-600 leading-relaxed mb-4 md:mb-6 text-sm md:text-base">
               We believe in radical transparency. Every ingredient, every process, 
               every claim is documented and verifiable. No hidden additives, no empty promises.
             </p>
@@ -263,11 +272,11 @@
         </div>
         
         <div class="group relative">
-          <div class="absolute -inset-0.5 bg-gradient-to-r from-emerald-500 to-green-400 rounded-3xl opacity-0 group-hover:opacity-20 blur transition-all duration-500"></div>
-          <div class="relative bg-gradient-to-b from-white to-slate-50 rounded-3xl p-8 border border-slate-200 group-hover:border-emerald-200 transition-all duration-500">
-            <div class="text-6xl font-black text-slate-400 mb-4">02</div>
-            <h3 class="text-2xl font-bold text-slate-900 mb-4">Scientific Innovation</h3>
-            <p class="text-slate-600 leading-relaxed mb-6">
+          <div class="absolute -inset-0.5 bg-gradient-to-r from-emerald-500 to-green-400 rounded-2xl md:rounded-3xl opacity-0 group-hover:opacity-20 blur transition-all duration-500"></div>
+          <div class="relative bg-gradient-to-b from-white to-slate-50 rounded-2xl md:rounded-3xl p-6 md:p-8 border border-slate-200 group-hover:border-emerald-200 transition-all duration-500">
+            <div class="text-4xl md:text-5xl lg:text-6xl font-black text-slate-400 mb-3 md:mb-4">02</div>
+            <h3 class="text-xl md:text-2xl font-bold text-slate-900 mb-3 md:mb-4">Scientific Innovation</h3>
+            <p class="text-slate-600 leading-relaxed mb-4 md:mb-6 text-sm md:text-base">
               Our R&D never stops. We continuously evolve our formulations based on 
               the latest peer-reviewed research and customer feedback.
             </p>
@@ -282,11 +291,11 @@
         </div>
         
         <div class="group relative">
-          <div class="absolute -inset-0.5 bg-gradient-to-r from-amber-500 to-orange-400 rounded-3xl opacity-0 group-hover:opacity-20 blur transition-all duration-500"></div>
-          <div class="relative bg-gradient-to-b from-white to-slate-50 rounded-3xl p-8 border border-slate-200 group-hover:border-amber-200 transition-all duration-500">
-            <div class="text-6xl font-black text-slate-400 mb-4">03</div>
-            <h3 class="text-2xl font-bold text-slate-900 mb-4">Human-Centered Impact</h3>
-            <p class="text-slate-600 leading-relaxed mb-6">
+          <div class="absolute -inset-0.5 bg-gradient-to-r from-amber-500 to-orange-400 rounded-2xl md:rounded-3xl opacity-0 group-hover:opacity-20 blur transition-all duration-500"></div>
+          <div class="relative bg-gradient-to-b from-white to-slate-50 rounded-2xl md:rounded-3xl p-6 md:p-8 border border-slate-200 group-hover:border-amber-200 transition-all duration-500">
+            <div class="text-4xl md:text-5xl lg:text-6xl font-black text-slate-400 mb-3 md:mb-4">03</div>
+            <h3 class="text-xl md:text-2xl font-bold text-slate-900 mb-3 md:mb-4">Human-Centered Impact</h3>
+            <p class="text-slate-600 leading-relaxed mb-4 md:mb-6 text-sm md:text-base">
               Beyond business metrics, we measure success in transformed lives, 
               improved health outcomes, and empowered wellness journeys.
             </p>
@@ -303,28 +312,28 @@
     </div>
 
     <!-- Team Vision -->
-    <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-[4rem] p-12 md:p-20 relative overflow-hidden">
-      <div class="absolute top-0 right-0 w-64 h-64 bg-blue-100 rounded-full blur-3xl opacity-50 -mr-32 -mt-32"></div>
+    <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl md:rounded-3xl lg:rounded-[4rem] p-6 md:p-12 lg:p-20 relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-32 h-32 md:w-64 md:h-64 bg-blue-100 rounded-full blur-3xl opacity-50 -mr-16 md:-mr-32 -mt-16 md:-mt-32"></div>
       
-      <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
         <div>
-          <div class="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full mb-6">
-            <div class="w-2 h-2 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full"></div>
-            <span class="text-xs font-bold text-blue-600 uppercase tracking-widest">Leadership Message</span>
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 bg-white rounded-full mb-4 md:mb-6">
+            <div class="w-1.5 h-1.5 md:w-2 md:h-2 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full"></div>
+            <span class="text-xs font-bold text-blue-600 uppercase tracking-wider md:tracking-widest">Leadership Message</span>
           </div>
           
-          <h2 class="text-4xl font-black text-slate-900 mb-6 leading-tight">
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 mb-4 md:mb-6 leading-tight">
             Our Vision: <span class="text-blue-600">Wellness at the Cellular Level</span>
           </h2>
           
-          <div class="space-y-4 mb-8">
-            <p class="text-lg text-slate-600 leading-relaxed">
+          <div class="space-y-3 md:space-y-4 mb-6 md:mb-8">
+            <p class="text-base md:text-lg text-slate-600 leading-relaxed">
               "At NanoCare, we believe that true health transformation happens not just on the surface, 
               but deep within every cell of your body. Our mission is to empower Egyptians and the 
               world with supplements that actually work—delivering measurable, life-changing results."
             </p>
             
-            <p class="text-lg text-slate-600 leading-relaxed">
+            <p class="text-base md:text-lg text-slate-600 leading-relaxed">
               We're proud to be an Egyptian company bringing world-class innovation to the global 
               wellness stage, combining ancient wisdom with modern nanotechnology.
             </p>
@@ -332,37 +341,37 @@
           
           <div class="flex items-center gap-6">
             <div class="flex items-center gap-4">
-              <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-2xl flex items-center justify-center text-white text-2xl font-bold">
+              <div class="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-xl md:rounded-2xl flex items-center justify-center text-white text-lg md:text-2xl font-bold">
                 NC
               </div>
               <div>
-                <div class="font-bold text-slate-900">NanoCare Team</div>
-                <div class="text-sm text-slate-600">Founders & Scientific Board</div>
+                <div class="font-bold text-slate-900 text-sm md:text-base">NanoCare Team</div>
+                <div class="text-xs md:text-sm text-slate-600">Founders & Scientific Board</div>
               </div>
             </div>
           </div>
         </div>
         
         <div class="relative">
-          <div class="grid grid-cols-2 gap-6">
-            <div class="space-y-6">
-              <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100">
-                <div class="text-3xl font-black text-blue-600 mb-2">100%</div>
-                <div class="text-sm font-bold text-slate-600">Egyptian Owned</div>
+          <div class="grid grid-cols-2 gap-4 md:gap-6">
+            <div class="space-y-4 md:space-y-6">
+              <div class="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg border border-slate-100">
+                <div class="text-2xl md:text-3xl font-black text-blue-600 mb-1 md:mb-2">100%</div>
+                <div class="text-xs md:text-sm font-bold text-slate-600">Egyptian Owned</div>
               </div>
-              <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100">
-                <div class="text-3xl font-black text-emerald-600 mb-2">24/7</div>
-                <div class="text-sm font-bold text-slate-600">Customer Support</div>
+              <div class="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg border border-slate-100">
+                <div class="text-2xl md:text-3xl font-black text-emerald-600 mb-1 md:mb-2">24/7</div>
+                <div class="text-xs md:text-sm font-bold text-slate-600">Customer Support</div>
               </div>
             </div>
-            <div class="space-y-6">
-              <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100">
-                <div class="text-3xl font-black text-amber-600 mb-2">0%</div>
-                <div class="text-sm font-bold text-slate-600">Artificial Preservatives</div>
+            <div class="space-y-4 md:space-y-6">
+              <div class="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg border border-slate-100">
+                <div class="text-2xl md:text-3xl font-black text-amber-600 mb-1 md:mb-2">0%</div>
+                <div class="text-xs md:text-sm font-bold text-slate-600">Artificial Preservatives</div>
               </div>
-              <div class="bg-white rounded-2xl p-6 shadow-lg border border-slate-100">
-                <div class="text-3xl font-black text-purple-600 mb-2">1000+</div>
-                <div class="text-sm font-bold text-slate-600">Hours of R&D</div>
+              <div class="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg border border-slate-100">
+                <div class="text-2xl md:text-3xl font-black text-purple-600 mb-1 md:mb-2">1000+</div>
+                <div class="text-xs md:text-sm font-bold text-slate-600">Hours of R&D</div>
               </div>
             </div>
           </div>
@@ -371,17 +380,17 @@
     </div>
 
     <!-- Call to Action -->
-    <div class="text-center mt-32">
-      <h3 class="text-3xl font-black text-slate-900 mb-6">
+    <div class="text-center mt-12 md:mt-16 lg:mt-24 xl:mt-32">
+      <h3 class="text-xl sm:text-2xl md:text-3xl font-black text-slate-900 mb-4 md:mb-6">
         Ready to Experience Cellular-Level Wellness?
       </h3>
-      <p class="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
+      <p class="text-base md:text-lg text-slate-600 mb-6 md:mb-8 max-w-2xl mx-auto px-4 sm:px-0">
         Join thousands who have transformed their health with NanoCare's advanced liposomal technology.
       </p>
       <a routerLink="/products" 
-         class="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-2xl font-bold text-lg hover:from-blue-700 hover:to-cyan-600 transition-all shadow-xl shadow-blue-500/30">
+         class="inline-flex items-center gap-2 md:gap-3 px-6 py-3 md:px-10 md:py-5 bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-xl md:rounded-2xl font-bold text-base md:text-lg hover:from-blue-700 hover:to-cyan-600 transition-all shadow-lg md:shadow-xl shadow-blue-500/30">
         Explore Our Products
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
         </svg>
       </a>
