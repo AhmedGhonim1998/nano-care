@@ -65,18 +65,7 @@
         <!-- Search -->
         <div class="hidden lg:block relative search-container">
           <div class="relative">
-            <input type="text" 
-                   [(ngModel)]="searchQuery"
-                   (input)="onSearchInput()"
-                   (focus)="onSearchFocus()"
-                   (blur)="onSearchBlur()"
-                   placeholder="Search products..." 
-                   class="pl-12 pr-4 py-3 w-64 rounded-2xl bg-gray-100/80 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:bg-white transition-all duration-300"
-                   [class.w-72]="isSearchFocused">
-            <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-            </svg>
-            
+           
             <!-- Search Results Dropdown -->
             <div *ngIf="searchResults.length > 0 && isSearchFocused" 
                  class="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-2xl border border-gray-200 max-h-96 overflow-y-auto z-50">
@@ -104,13 +93,7 @@
         </div>
 
         <!-- User Account -->
-        <button class="hidden lg:flex items-center gap-2 px-4 py-3 rounded-2xl bg-gray-100/80 hover:bg-blue-50 transition-all duration-300 group">
-          <svg class="w-5 h-5 text-gray-600 group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-          </svg>
-          <span class="text-sm font-medium text-gray-700 group-hover:text-blue-600 transition-colors">Account</span>
-        </button>
-
+       
         <!-- Cart -->
         <button routerLink="/cart" class="relative p-3.5 bg-gradient-to-br from-gray-50 to-white rounded-2xl hover:from-blue-50 hover:to-cyan-50 transition-all duration-300 shadow-sm hover:shadow-md group">
           <svg class="w-6 h-6 text-gray-700 group-hover:text-blue-600 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -252,15 +235,7 @@
 
       <!-- Additional Mobile Items -->
       <div class="mt-6 pt-6 border-t border-gray-200/60 space-y-1">
-        <a routerLink="/account" (click)="closeMenu()"
-           class="flex items-center gap-4 p-4 rounded-2xl hover:bg-gradient-to-r hover:from-blue-50/80 hover:to-cyan-50/80 transition-all duration-300 group">
-          <div class="p-2.5 bg-blue-50 rounded-xl group-hover:bg-blue-100 transition-colors duration-300">
-            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-            </svg>
-          </div>
-          <span class="font-bold text-gray-800 group-hover:text-blue-600 transition-colors">My Account</span>
-        </a>
+        
         
         <a routerLink="/orders" (click)="closeMenu()"
            class="flex items-center gap-4 p-4 rounded-2xl hover:bg-gradient-to-r hover:from-blue-50/80 hover:to-cyan-50/80 transition-all duration-300 group">

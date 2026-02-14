@@ -19,118 +19,251 @@
       
       <!-- Category Filter -->
       <div class="flex flex-nowrap gap-1.5 sm:gap-2 overflow-x-auto pb-2 md:pb-0 bg-white/80 backdrop-blur-sm p-1.5 sm:p-2 rounded-xl md:rounded-2xl border border-gray-100 shadow-sm">
-        <button class="flex-shrink-0 px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg md:rounded-xl text-xs sm:text-sm font-bold tracking-wider uppercase shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
-          All Products
+       
+      </div>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="isLoading" class="text-center py-20">
+      <div class="inline-block animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-600"></div>
+      <p class="mt-4 text-gray-600 font-semibold">Loading products...</p>
+    </div>
+
+    <!-- Error State -->
+    <div *ngIf="errorMessage && !isLoading" class="text-center py-20">
+      <div class="max-w-md mx-auto bg-red-50 border border-red-200 rounded-2xl p-8">
+        <svg class="w-16 h-16 text-red-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        <h3 class="text-xl font-bold text-red-900 mb-2">Oops! Something went wrong</h3>
+        <p class="text-red-700 mb-6">{{ errorMessage }}</p>
+        <button (click)="refresh()" class="px-6 py-3 bg-red-600 text-white rounded-xl font-bold hover:bg-red-700 transition-all">
+          Try Again
         </button>
-        <button class="flex-shrink-0 px-4 sm:px-6 py-2 sm:py-3 bg-white text-gray-600 rounded-lg md:rounded-xl text-xs sm:text-sm font-semibold tracking-wider uppercase border border-gray-200 hover:border-blue-300 hover:text-blue-700 transition-all duration-300 hover:shadow-md">
-          Collagen
-        </button>
-        <button class="flex-shrink-0 px-4 sm:px-6 py-2 sm:py-3 bg-white text-gray-600 rounded-lg md:rounded-xl text-xs sm:text-sm font-semibold tracking-wider uppercase border border-gray-200 hover:border-blue-300 hover:text-blue-700 transition-all duration-300 hover:shadow-md">
-          Vitamins
-        </button>
-        <button class="flex-shrink-0 px-4 sm:px-6 py-2 sm:py-3 bg-white text-gray-600 rounded-lg md:rounded-xl text-xs sm:text-sm font-semibold tracking-wider uppercase border border-gray-200 hover:border-blue-300 hover:text-blue-700 transition-all duration-300 hover:shadow-md">
-          Minerals
-        </button>
-        <button class="flex-shrink-0 px-4 sm:px-6 py-2 sm:py-3 bg-white text-gray-600 rounded-lg md:rounded-xl text-xs sm:text-sm font-semibold tracking-wider uppercase border border-gray-200 hover:border-blue-300 hover:text-blue-700 transition-all duration-300 hover:shadow-md">
-          Proteins
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="!isLoading && !errorMessage && products.length === 0" class="text-center py-20">
+      <div class="max-w-md mx-auto">
+        <svg class="w-24 h-24 text-gray-300 mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/>
+        </svg>
+        <h3 class="text-2xl font-bold text-gray-900 mb-2">No products found</h3>
+        <p class="text-gray-600 mb-6">Try adjusting your filters or search term</p>
+        <button (click)="clearFilters()" class="px-6 py-3 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition-all">
+          Clear Filters
         </button>
       </div>
     </div>
 
     <!-- Products Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+   <!-- Products Grid -->
+<div *ngIf="!isLoading && !errorMessage && products.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+  
+  <!-- Real products from API -->
+  <div *ngFor="let product of products" class="group cursor-pointer" [routerLink]="['/products', product.id]">
+    <!-- Product Card Container (unchanged) -->
+    <div class="relative bg-gradient-to-b from-white to-gray-50 rounded-2xl md:rounded-3xl p-4 sm:p-6 overflow-hidden border border-gray-200 hover:border-blue-200 hover:shadow-xl md:hover:shadow-2xl transition-all duration-500 group-hover:scale-[1.02]">
       
-      <div *ngFor="let product of products" class="group cursor-pointer" [routerLink]="['/products', product.id]">
-        <!-- Product Card Container -->
-        <div class="relative bg-gradient-to-b from-white to-gray-50 rounded-2xl md:rounded-3xl p-4 sm:p-6 overflow-hidden border border-gray-200 hover:border-blue-200 hover:shadow-xl md:hover:shadow-2xl transition-all duration-500 group-hover:scale-[1.02]">
-          
-          <!-- Floating Tag -->
-          <div class="absolute top-3 sm:top-5 left-3 sm:left-5 z-20">
-            <span [class]="product.tagColor + ' px-3 sm:px-4 py-1 sm:py-2 rounded-full text-xs font-bold text-white uppercase tracking-wider shadow-lg'">
-              {{product.tag}}
-            </span>
-          </div>
+      <!-- Floating Tag -->
+      <div class="absolute top-3 sm:top-5 left-3 sm:left-5 z-20">
+        <span [class]="product.tagColor + ' px-3 sm:px-4 py-1 sm:py-2 rounded-full text-xs font-bold text-white uppercase tracking-wider shadow-lg'">
+          {{product.tag}}
+        </span>
+      </div>
 
-          <!-- Image Container -->
-          <div class="relative h-48 sm:h-56 md:h-72 mb-4 sm:mb-6">
-            <div class="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-cyan-50/50 rounded-xl md:rounded-2xl group-hover:from-blue-100/50 group-hover:to-cyan-100/50 transition-all duration-500"></div>
-            <div class="relative h-full flex items-center justify-center p-4 sm:p-6">
-              <img [src]="product.image" 
-                   [alt]="product.name" 
-                   class="max-w-full max-h-full object-contain drop-shadow-xl md:drop-shadow-2xl group-hover:scale-110 transition-transform duration-700">
-            </div>
-          </div>
-
-          <!-- Product Info -->
-          <div class="space-y-3 sm:space-y-4">
-            <div>
-              <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-1 group-hover:text-blue-700 transition-colors">{{product.name}}</h3>
-              <p class="text-xs sm:text-sm text-gray-500 font-medium uppercase tracking-wider">{{product.category}}</p>
-            </div>
-            
-            <p class="text-gray-600 text-xs sm:text-sm leading-relaxed line-clamp-2">
-              {{product.description || 'Premium formula for optimal health benefits and maximum absorption.'}}
-            </p>
-
-            <div class="flex items-center justify-between pt-3 sm:pt-4 border-t border-gray-100">
-              <div>
-                <span class="text-2xl sm:text-3xl font-black bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent italic">
-                  {{product.price}}
-                  <small class="text-xs sm:text-sm font-medium text-gray-500 not-italic">EGP</small>
-                </span>
-                <div class="flex items-center gap-1 mt-0.5 sm:mt-1">
-                  <svg *ngFor="let star of [1,2,3,4,5]" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 fill-current" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                  </svg>
-                  <span class="text-xs text-gray-500 ml-1 sm:ml-2">4.8 (120 reviews)</span>
-                </div>
-              </div>
-              
-              <!-- Action Buttons -->
-              <div class="flex gap-1.5 sm:gap-2">
-                <button (click)="toggleFavorite(product, $event)" 
-                        type="button"
-                        [ngClass]="isFavorite(product.id) ? 'bg-red-50 border-red-200 text-red-500' : 'bg-white border-gray-200 text-gray-700 hover:text-red-500 hover:border-red-300 hover:bg-red-50'"
-                        class="w-10 h-10 sm:w-12 sm:h-12 border rounded-lg sm:rounded-xl flex items-center justify-center hover:shadow-md transition-all duration-300 transform hover:-translate-y-0.5 sm:hover:-translate-y-1 group/btn">
-                  <svg class="w-4 h-4 sm:w-5 sm:h-5 transition-all" [attr.fill]="isFavorite(product.id) ? 'currentColor' : 'none'" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-                  </svg>
-                  <span class="absolute -top-7 sm:-top-8 bg-gray-900 text-white text-xs py-1 px-2 rounded opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300 whitespace-nowrap text-[10px] sm:text-xs">
-                    {{ isFavorite(product.id) ? 'Remove from Wishlist' : 'Add to Wishlist' }}
-                  </span>
-                </button>
-                
-                <button (click)="$event.stopPropagation()" [routerLink]="['/products', product.id]" class="w-10 h-10 sm:w-12 sm:h-12 bg-gray-100 border border-gray-200 rounded-lg sm:rounded-xl flex items-center justify-center text-gray-700 hover:text-blue-600 hover:border-blue-300 hover:bg-blue-50 hover:shadow-md transition-all duration-300 transform hover:-translate-y-0.5 sm:hover:-translate-y-1 group/btn3">
-                  <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                  </svg>
-                  <span class="absolute -top-7 sm:-top-8 bg-gray-900 text-white text-xs py-1 px-2 rounded opacity-0 group-hover/btn3:opacity-100 transition-opacity duration-300 whitespace-nowrap text-[10px] sm:text-xs">
-                    View Details
-                  </span>
-                </button>
-                
-                <button (click)="$event.stopPropagation()" class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-lg sm:rounded-xl flex items-center justify-center shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 transform hover:-translate-y-0.5 sm:hover:-translate-y-1 group/btn2">
-                  <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                  </svg>
-                  <span class="absolute -top-7 sm:-top-8 bg-gray-900 text-white text-xs py-1 px-2 rounded opacity-0 group-hover/btn2:opacity-100 transition-opacity duration-300 whitespace-nowrap text-[10px] sm:text-xs">
-                    Add to Cart
-                  </span>
-                </button>
-              </div>
-            </div>
-          </div>
+      <!-- Image Container -->
+      <div class="relative h-48 sm:h-56 md:h-72 mb-4 sm:mb-6">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-cyan-50/50 rounded-xl md:rounded-2xl group-hover:from-blue-100/50 group-hover:to-cyan-100/50 transition-all duration-500"></div>
+        <div class="relative h-full flex items-center justify-center p-4 sm:p-6">
+          <img [src]="product.imageUrl" 
+               [alt]="product.name" 
+               class="max-w-full max-h-full object-contain drop-shadow-xl md:drop-shadow-2xl group-hover:scale-110 transition-transform duration-700">
         </div>
       </div>
 
+      <!-- Product Info -->
+      <div class="space-y-3 sm:space-y-4">
+        <div>
+          <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-1 group-hover:text-blue-700 transition-colors">{{product.name}}</h3>
+          <p class="text-xs sm:text-sm text-gray-500 font-medium uppercase tracking-wider">{{product.category}}</p>
+        </div>
+        
+        <p class="text-gray-600 text-xs sm:text-sm leading-relaxed line-clamp-2">
+          {{product.description || 'Premium formula for optimal health benefits and maximum absorption.'}}
+        </p>
+
+        <div class="flex items-center justify-between pt-3 sm:pt-4 border-t border-gray-100">
+          <div>
+            <span class="text-2xl sm:text-3xl font-black bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent italic">
+              {{product.price}}
+              <small class="text-xs sm:text-sm font-medium text-gray-500 not-italic">EGP</small>
+            </span>
+            <div class="flex items-center gap-1 mt-0.5 sm:mt-1">
+              <svg *ngFor="let star of [1,2,3,4,5]" 
+                   [class.text-amber-400]="star <= (product.rating || 4.8)"
+                   [class.text-gray-300]="star > (product.rating || 4.8)"
+                   class="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+              </svg>
+              <span class="text-xs text-gray-500 ml-1 sm:ml-2">{{ product.rating || 4.8 }} ({{ product.reviewCount || 120 }} reviews)</span>
+            </div>
+          </div>
+          
+          <!-- Action Buttons -->
+          <div class="flex gap-1.5 sm:gap-2">
+            <button (click)="$event.stopPropagation()" [routerLink]="['/products', product.id]" class="w-10 h-10 sm:w-12 sm:h-12 bg-gray-100 border border-gray-200 rounded-lg sm:rounded-xl flex items-center justify-center text-gray-700 hover:text-blue-600 hover:border-blue-300 hover:bg-blue-50 hover:shadow-md transition-all duration-300 transform hover:-translate-y-0.5 sm:hover:-translate-y-1 group/btn3">
+              <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+              </svg>
+              <span class="absolute -top-7 sm:-top-8 bg-gray-900 text-white text-xs py-1 px-2 rounded opacity-0 group-hover/btn3:opacity-100 transition-opacity duration-300 whitespace-nowrap text-[10px] sm:text-xs">
+                View Details
+              </span>
+            </button>
+            
+            <button (click)="addToCart(product, $event)" class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-lg sm:rounded-xl flex items-center justify-center shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 transform hover:-translate-y-0.5 sm:hover:-translate-y-1 group/btn2">
+              <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+              </svg>
+              <span class="absolute -top-7 sm:-top-8 bg-gray-900 text-white text-xs py-1 px-2 rounded opacity-0 group-hover/btn2:opacity-100 transition-opacity duration-300 whitespace-nowrap text-[10px] sm:text-xs">
+                Add to Cart
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== COMING SOON CARD (static) ========== -->
+  <div *ngIf="showComingSoon" class="group opacity-80 hover:opacity-100 transition-opacity duration-300">
+    <div class="relative bg-gradient-to-b from-white to-gray-50 rounded-2xl md:rounded-3xl p-4 sm:p-6 overflow-hidden border border-gray-200 hover:border-gray-300 hover:shadow-xl transition-all duration-500">
+      
+      <!-- Floating Tag – "COMING SOON" in gray -->
+      <div class="absolute top-3 sm:top-5 left-3 sm:left-5 z-20">
+        <span class="bg-gradient-to-r from-gray-600 to-gray-500 px-3 sm:px-4 py-1 sm:py-2 rounded-full text-xs font-bold text-white uppercase tracking-wider shadow-lg">
+          COMING SOON
+        </span>
+      </div>
+
+      <!-- Image Container – placeholder image -->
+      <div class="relative h-48 sm:h-56 md:h-72 mb-4 sm:mb-6">
+        <div class="absolute inset-0 bg-gradient-to-br from-gray-100/50 to-gray-200/50 rounded-xl md:rounded-2xl"></div>
+        <div class="relative h-full flex items-center justify-center p-4 sm:p-6">
+          <img src="assets/coverImages/coming-soon-placeholder.png" 
+               alt="Coming soon" 
+               class="max-w-full max-h-full object-contain drop-shadow-xl opacity-60 group-hover:scale-105 transition-transform duration-700"
+               (error)="$any($event.target).src='assets/placeholder.png'">
+        </div>
+      </div>
+
+      <!-- Product Info -->
+      <div class="space-y-3 sm:space-y-4">
+        <div>
+          <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-1">
+            multi collagen
+          </h3>
+          <p class="text-xs sm:text-sm text-gray-500 font-medium uppercase tracking-wider">
+            Coming Soon
+          </p>
+        </div>
+        
+        <p class="text-gray-600 text-xs sm:text-sm leading-relaxed line-clamp-2">
+          Our latest innovation – launching soon. Be the first to know!
+        </p>
+
+        <div class="flex items-center justify-between pt-3 sm:pt-4 border-t border-gray-100">
+          <!-- No price, just a message -->
+          <span class="text-sm text-gray-500 italic">Available soon</span>
+          
+          <!-- Action Buttons – "Notify Me" only -->
+          <div class="flex gap-1.5 sm:gap-2">
+            <!-- Disabled "View Details" button -->
+            <button disabled 
+                    class="w-10 h-10 sm:w-12 sm:h-12 bg-gray-100 border border-gray-200 rounded-lg sm:rounded-xl flex items-center justify-center text-gray-400 cursor-not-allowed">
+              <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+              </svg>
+            </button>
+            
+            <!-- "Notify Me" button -->
+            <button (click)="notifyMe()" 
+                    class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-gray-600 to-gray-500 text-white rounded-lg sm:rounded-xl flex items-center justify-center shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 group/btn4">
+              <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+              </svg>
+              <span class="absolute -top-7 sm:-top-8 bg-gray-900 text-white text-xs py-1 px-2 rounded opacity-0 group-hover/btn4:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                Notify me
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ========== END COMING SOON CARD ========== -->
+
+</div>
+
+    <!-- Pagination -->
+    <div *ngIf="!isLoading && !errorMessage && products.length > 0 && totalPages > 1" class="mt-12 md:mt-16">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <!-- Results Info -->
+        <div class="text-sm text-gray-600">
+          Showing <span class="font-bold">{{ (currentPage - 1) * pageSize + 1 }}</span> to 
+          <span class="font-bold">{{ Math.min(currentPage * pageSize, totalItems) }}</span> of 
+          <span class="font-bold">{{ totalItems }}</span> products
+        </div>
+
+        <!-- Pagination Controls -->
+        <div class="flex items-center gap-2">
+          <!-- Previous Button -->
+          <button 
+            (click)="previousPage()"
+            [disabled]="!hasPreviousPage"
+            [class.opacity-50]="!hasPreviousPage"
+            [class.cursor-not-allowed]="!hasPreviousPage"
+            class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-gray-700 font-semibold hover:bg-gray-50 hover:border-blue-300 transition-all disabled:hover:bg-white disabled:hover:border-gray-200">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+          </button>
+
+          <!-- Page Numbers -->
+          <button 
+            *ngFor="let page of getPageNumbers()"
+            (click)="goToPage(page)"
+            [class.bg-blue-600]="page === currentPage"
+            [class.text-white]="page === currentPage"
+            [class.bg-white]="page !== currentPage"
+            [class.text-gray-700]="page !== currentPage"
+            class="w-10 h-10 border border-gray-200 rounded-lg font-bold hover:bg-blue-50 hover:border-blue-300 transition-all">
+            {{ page }}
+          </button>
+
+          <!-- Next Button -->
+          <button 
+            (click)="nextPage()"
+            [disabled]="!hasNextPage"
+            [class.opacity-50]="!hasNextPage"
+            [class.cursor-not-allowed]="!hasNextPage"
+            class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-gray-700 font-semibold hover:bg-gray-50 hover:border-blue-300 transition-all disabled:hover:bg-white disabled:hover:border-gray-200">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </button>
+        </div>
+      </div>
     </div>
 
-    <!-- View All Button -->
-    <div class="text-center mt-12 md:mt-20">
-      <button class="group relative px-6 sm:px-8 py-3 sm:py-4 bg-white text-gray-800 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-bold tracking-wider uppercase border-2 border-gray-200 hover:border-blue-300 transition-all duration-300 hover:shadow-lg sm:hover:shadow-xl">
-        View All Products
-        <span class="ml-2 group-hover:translate-x-2 inline-block transition-transform duration-300">→</span>
+    <!-- View All Button (Optional - can be removed if using pagination) -->
+    <div *ngIf="!isLoading && !errorMessage && products.length > 0" class="text-center mt-12 md:mt-20">
+      <button (click)="clearFilters()" class="group relative px-6 sm:px-8 py-3 sm:py-4 bg-white text-gray-800 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-bold tracking-wider uppercase border-2 border-gray-200 hover:border-blue-300 transition-all duration-300 hover:shadow-lg sm:hover:shadow-xl">
+        Reset Filters
+        <span class="ml-2 group-hover:rotate-180 inline-block transition-transform duration-300">↻</span>
         <div class="absolute inset-0 border-2 border-blue-400 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 animate-pulse-slow"></div>
       </button>
     </div>

@@ -4,16 +4,17 @@ import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs/operators';
 import { CartService } from '../../../services/cart.service';
-import { ProductsService } from '../../../products.service';
+import { ProductService } from '../../../services/product.service'; // Fixed: Changed from ProductsService to ProductService
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   imports: [CommonModule, RouterModule, FormsModule],
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
+  standalone: true // Added: Missing standalone property
 })
-export class NavbarComponent implements OnInit , OnDestroy {
+export class NavbarComponent implements OnInit, OnDestroy {
   isScrolled = false;
   isMenuOpen = false;
   isSearchFocused = false;
@@ -22,30 +23,50 @@ export class NavbarComponent implements OnInit , OnDestroy {
   searchResults: any[] = [];
   allProducts: any[] = [];
   private routerSub?: Subscription;
+  private cartSub?: Subscription; // Added: To manage cart subscription
   
   constructor(
     private router: Router, 
     private cartService: CartService,
-    private productsService: ProductsService
+    private productService: ProductService // Fixed: Changed from productsService to productService
   ) {}
 
   ngOnInit() {
     this.checkScroll();
-    this.allProducts = this.productsService.getProducts();
+    this.loadProducts(); // Fixed: Changed to use async method
     
     // Subscribe to cart items to update the count
-    this.cartService.getCartItems().subscribe(items => {
+    this.cartSub = this.cartService.getCartItems().subscribe(items => {
       this.cartItemCount = items.length;
     });
     
-    // Prevent scroll when modal is open
-    this.router.events.subscribe(() => {
+    // Subscribe to router events to close menu on navigation
+    this.routerSub = this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
       this.closeMenu();
     });
   }
   
   ngOnDestroy() {
     this.routerSub?.unsubscribe();
+    this.cartSub?.unsubscribe(); // Clean up cart subscription
+  }
+
+  /**
+   * Load products for search functionality
+   */
+  loadProducts() {
+    // Load products with a reasonable page size for search
+    this.productService.getProducts(1, 100).subscribe({
+      next: (response) => {
+        this.allProducts = response.items;
+      },
+      error: (error) => {
+        console.error('Error loading products for search:', error);
+        this.allProducts = [];
+      }
+    });
   }
   
   @HostListener('window:scroll', [])
@@ -131,8 +152,8 @@ export class NavbarComponent implements OnInit , OnDestroy {
     const query = this.searchQuery.toLowerCase();
     this.searchResults = this.allProducts.filter(product =>
       product.name.toLowerCase().includes(query) ||
-      product.category.toLowerCase().includes(query) ||
-      product.description.toLowerCase().includes(query)
+      (product.category && product.category.toLowerCase().includes(query)) ||
+      (product.description && product.description.toLowerCase().includes(query))
     );
   }
 
@@ -140,7 +161,7 @@ export class NavbarComponent implements OnInit , OnDestroy {
     this.performSearch();
   }
 
-  navigateToProduct(productId: number) {
+  navigateToProduct(productId: string) { // Fixed: Changed parameter type from number to string
     this.router.navigate(['/products', productId]);
     this.searchQuery = '';
     this.searchResults = [];

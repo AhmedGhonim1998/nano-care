@@ -3,12 +3,23 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { CartService, CartItem } from '../../services/cart.service';
+import { CartService } from '../../services/cart.service';
+import { CartItem } from '../../models';
+import { OrderService } from '../../services/order.service'; // تأكد من المسار
+import { ShippingAddress } from '../../models';
 
 interface CartItemExtended extends CartItem {
   tag?: string;
   description?: string;
   isBestSeller?: boolean;
+}
+
+interface CustomerInfo {
+  firstName: string;
+  lastName: string;
+  email: string;
+  address: string;
+  message: string;
 }
 
 @Component({
@@ -23,35 +34,56 @@ export class CartComponent implements OnInit {
   totalPrice: number = 0;
   discountAmount: number = 0;
   discountCode: string = '';
-  selectedPayment: 'cash' | 'visa' | null = null;
   isLoading: boolean = false;
+  errorMessage: string = '';
   
-  // Card payment fields
-  cardNumber: string = '';
-  cardExpiry: string = '';
-  cardCVC: string = '';
+  // Customer information
+  customerInfo: CustomerInfo = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    address: '',
+    message: ''
+  };
 
   constructor(
-    private cartService: CartService,
-    private router: Router
-  ) {}
+  private cartService: CartService,
+  private router: Router,
+  private orderService: OrderService // 👈 ضيف السطر ده هنا
+) {}
 
   ngOnInit() {
     this.loadCartItems();
   }
 
   loadCartItems() {
-    this.cartService.getCartItems().subscribe(items => {
-      this.cartItems = items.map(item => ({
-        ...item,
-        tag: this.getRandomTag(),
-        description: this.getDescription(item.name),
-        isBestSeller: Math.random() > 0.5
-      }));
-      this.calculateTotal();
-    });
-  }
+  this.cartService.getCartItems().subscribe(items => {
+    if (!items) return; // تأمين لو السلة فاضية
 
+    this.cartItems = items.map(item => {
+      // 1. استخراج الداتا بأي مسمى جاية بيه
+      const pId = item.productId || (item as any).id || (item as any)._id;
+      const pName = item.productName || (item as any).name;
+      const pImage = (item as any).pictureUrl || item.imageUrl || (item as any).image;
+
+      // 2. بناء كائن جديد "نضيف" الـ HTML يقدر يقرأه بسهولة
+      return {
+        ...item,
+        productId: String(pId),   // توحيد الـ ID
+        productName: pName,       // توحيد الاسم عشان الـ undefined
+        imageUrl: pImage,         // توحيد الصورة
+        price: Number(item.price), // ضمان إن السعر رقم للحسابات
+        quantity: Number(item.quantity),
+        // الخواص الإضافية للـ UI
+        tag: (item as any).tag || this.getRandomTag(),
+        description: (item as any).description || this.getDescription(pName),
+        isBestSeller: (item as any).isBestSeller !== undefined ? (item as any).isBestSeller : Math.random() > 0.5
+      };
+    });
+
+    this.calculateTotal(); // حساب الإجمالي بعد ما الداتا بقت جاهزة
+  });
+}
   getRandomTag(): string {
     const tags = ['Best Seller', 'Most Popular', 'New Formula', 'Limited Stock'];
     return tags[Math.floor(Math.random() * tags.length)];
@@ -73,11 +105,11 @@ export class CartComponent implements OnInit {
 
   calculateFinalTotal(): number {
     const subtotal = this.totalPrice;
-    const tax = subtotal * 0.14;
+    const tax = subtotal * 0;
     return subtotal + tax - this.discountAmount;
   }
 
-  updateQuantity(productId: number, newQuantity: number) {
+  updateQuantity(productId: any, newQuantity: number) {
     if (newQuantity < 1) {
       this.removeItem(productId);
     } else if (newQuantity > 10) {
@@ -88,7 +120,7 @@ export class CartComponent implements OnInit {
     }
   }
 
-  removeItem(productId: number) {
+  removeItem(productId: any) {
     if (confirm('Remove this item from your cart?')) {
       this.cartService.removeFromCart(productId);
       this.calculateTotal();
@@ -107,23 +139,25 @@ export class CartComponent implements OnInit {
     }
   }
 
-  selectPaymentMethod(method: 'cash' | 'visa') {
-    this.selectedPayment = method;
+  isFormValid(): boolean {
+    // Check required fields
+    const hasFirstName = this.customerInfo.firstName.trim().length > 0;
+    const hasLastName = this.customerInfo.lastName.trim().length > 0;
+    const hasEmail = this.customerInfo.email.trim().length > 0;
+    const hasAddress = this.customerInfo.address.trim().length > 0;
+    
+    // Basic email validation
+    const isEmailValid = this.isEmailValid();
+    
+    return hasFirstName && hasLastName && hasEmail && hasAddress && isEmailValid;
   }
 
-  formatCardNumber() {
-    // Remove all non-digit characters
-    let value = this.cardNumber.replace(/\D/g, '');
-    
-    // Add spaces every 4 digits
-    value = value.replace(/(\d{4})(?=\d)/g, '$1 ');
-    
-    // Limit to 19 characters (16 digits + 3 spaces)
-    if (value.length > 19) {
-      value = value.substring(0, 19);
+  isEmailValid(): boolean {
+    if (!this.customerInfo.email.trim()) {
+      return false;
     }
-    
-    this.cardNumber = value;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(this.customerInfo.email);
   }
 
   applyDiscount() {
@@ -152,68 +186,63 @@ export class CartComponent implements OnInit {
     }
   }
 
-  validateCardPayment(): boolean {
-    if (!this.cardNumber || this.cardNumber.replace(/\s/g, '').length !== 16) {
-      alert('Please enter a valid 16-digit card number');
+  validateCustomerInfo(): boolean {
+    if (!this.customerInfo.firstName.trim()) {
+      alert('Please enter your first name');
       return false;
     }
 
-    if (!this.cardExpiry || !/^\d{2}\/\d{2}$/.test(this.cardExpiry)) {
-      alert('Please enter a valid expiry date (MM/YY)');
+    if (!this.customerInfo.lastName.trim()) {
+      alert('Please enter your last name');
       return false;
     }
 
-    if (!this.cardCVC || this.cardCVC.length !== 3) {
-      alert('Please enter a valid 3-digit CVC');
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!this.customerInfo.email.trim() || !emailPattern.test(this.customerInfo.email)) {
+      alert('Please enter a valid email address');
+      return false;
+    }
+
+    if (!this.customerInfo.address.trim()) {
+      alert('Please enter your delivery address');
       return false;
     }
 
     return true;
   }
 
-  checkout() {
-    if (this.cartItems.length === 0) {
-      alert('Your cart is empty!');
-      return;
-    }
-
-    if (!this.selectedPayment) {
-      alert('Please select a payment method');
-      return;
-    }
-
-    if (this.selectedPayment === 'visa' && !this.validateCardPayment()) {
-      return;
-    }
-
-    this.isLoading = true;
-
-    // Simulate API call
-    setTimeout(() => {
-      this.isLoading = false;
-      
-      // Create order summary
-      const orderSummary = {
-        items: this.cartItems,
-        subtotal: this.totalPrice,
-        discount: this.discountAmount,
-        tax: this.totalPrice * 0.14,
-        total: this.calculateFinalTotal(),
-        paymentMethod: this.selectedPayment === 'cash' ? 'Cash on Delivery' : 'Credit Card',
-        orderNumber: 'NC-' + Math.floor(100000 + Math.random() * 900000),
-        estimatedDelivery: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000) // 2 days from now
-      };
-
-      // Store order in service for confirmation page
-      this.cartService.setOrderSummary(orderSummary);
-
-      // Clear cart
-      this.cartService.clearCart();
-      this.cartItems = [];
-      this.calculateTotal();
-
-      // Navigate to confirmation page
-      this.router.navigate(['/order-confirmation']);
-    }, 2000);
+ checkout(): void {
+  if (this.cartItems.length === 0) {
+    alert('السلة فارغة!');
+    return;
   }
+
+  const checkoutPayload = {
+    userId: this.cartService.getCartId(), // أو userId
+    customerInfo: this.customerInfo,
+    items: this.cartItems.map(item => ({
+      productId: item.productId,
+      productName: item.productName,
+      price: item.price,
+      quantity: item.quantity,
+      imageUrl: item.imageUrl
+    }))
+  };
+
+  this.orderService.createOrder(checkoutPayload.customerInfo, checkoutPayload.userId)
+  .subscribe({
+    next: (res) => {
+      console.log('✅ Order Created:', res);
+      alert('تم تسجيل طلبك بنجاح!');
+      this.cartService.clearCart();
+      this.router.navigate(['/orders']);
+    },
+    error: (err: any) => {
+      console.error('❌ Error details:', err);
+      this.errorMessage = "حدث خطأ أثناء إتمام الطلب";
+    }
+  });
+
+}
+
 }
