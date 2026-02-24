@@ -267,8 +267,7 @@ clearCart() {
         ProductName: String(item.productName),
         Price: Number(item.price),
         Quantity: Number(item.quantity),
-        ImageUrl: String(item.imageUrl)
-      }))
+ImageUrl: String(item.imageUrl || item.image)      }))
     };
 
     console.log('📤 Sending to server:', cartData);

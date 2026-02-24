@@ -53,7 +53,7 @@ loadProductFromServer(id: string) {
   features: data.features ?? [],
   categoryId: data.categoryId ?? '',
   image: data.imageUrl 
-    ? `https://localhost:44353${data.imageUrl}`
+    ? `https://api.nanocareegypt.com${data.imageUrl}`
     : 'assets/placeholder.png'
 };
 
