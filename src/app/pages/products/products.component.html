@@ -123,10 +123,13 @@
               </span>
             </button>
             
-            <button (click)="addToCart(product, $event)" class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-lg sm:rounded-xl flex items-center justify-center shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 transform hover:-translate-y-0.5 sm:hover:-translate-y-1 group/btn2">
+            <button (click)="handleAddToCart(product, $event)"
+              class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-lg sm:rounded-xl flex items-center justify-center shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 transform hover:-translate-y-0.5 sm:hover:-translate-y-1 group/btn2">
+  
               <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
               </svg>
+
               <span class="absolute -top-7 sm:-top-8 bg-gray-900 text-white text-xs py-1 px-2 rounded opacity-0 group-hover/btn2:opacity-100 transition-opacity duration-300 whitespace-nowrap text-[10px] sm:text-xs">
                 Add to Cart
               </span>

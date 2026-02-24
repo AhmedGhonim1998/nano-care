@@ -85,56 +85,40 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   /**
    * Handle form submission and create order
    */
-  placeOrder(): void {
-  if (!this.checkoutForm.valid) {
-    this.errorMessage = "Please fill all required fields correctly.";
-    Object.keys(this.checkoutForm.controls).forEach(key => {
-      this.checkoutForm.get(key)?.markAsTouched();
+ placeOrder(): void {
+    if (!this.checkoutForm.valid) {
+      this.errorMessage = "Please fill all required fields correctly.";
+      return;
+    }
+
+    this.isSubmitting = true;
+    
+    // 1. هات الـ ID من السيرفس
+    const cartId = this.cartService.getCartId();
+    const userId = cartId; // في حالتك هما نفس القيمة
+
+    // 2. التعديل الجوهري: ابعت الـ 3 حاجات (customerInfo, userId, cartId) 👈
+    this.orderService.createOrder(this.checkoutForm.value, userId, cartId).subscribe({
+      next: (response) => {
+        console.log('✅ Order created successfully!', response);
+        this.successMessage = `Order #${response.id} placed successfully!`;
+        this.isSubmitting = false;
+
+        this.cartService.clearCart();
+
+        setTimeout(() => {
+          this.router.navigate(['/order-confirmation'], {
+            state: { order: response }
+          });
+        }, 2000);
+      },
+      error: (err) => {
+        console.error('❌ Order failed:', err);
+        this.isSubmitting = false;
+        this.errorMessage = err.error?.message || err.error || "Failed to place order.";
+      }
     });
-    return;
   }
-
-  if (this.cartItems.length === 0) {
-    this.errorMessage = "Your cart is empty!";
-    return;
-  }
-
-  this.isSubmitting = true;
-  this.errorMessage = '';
-
-  const customerEmail = this.checkoutForm.value.customerEmail;
-
-  const orderPayload = {
-    userId: "buyer_123",   // نفس الـ cartId بالظبط
-    customerEmail: customerEmail
-  };
-
-  console.log("📦 Sending to backend:", orderPayload);
-
-  const userId = this.cartService.getCartId(); // لو ضفت الميثود دي في CartService
-this.orderService.createOrder(this.checkoutForm.value, userId).subscribe({
-  next: (response) => {
-    console.log('✅ Order created successfully!', response);
-    this.successMessage = `Order #${response.id} placed successfully!`;
-    this.isSubmitting = false;
-
-    this.cartService.clearCart();
-
-    setTimeout(() => {
-      this.router.navigate(['/order-confirmation'], {
-        state: { order: response }
-      });
-    }, 2000);
-  },
-  error: (err) => {
-    console.error('❌ Order failed:', err);
-    this.isSubmitting = false;
-    this.errorMessage = err.error || "Failed to place order.";
-  }
-});
-
-}
-
   /**
    * Convenience getter for form controls
    */

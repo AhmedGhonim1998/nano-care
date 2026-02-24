@@ -1,7 +1,7 @@
 // product.component.ts
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule , Router } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { Product, PaginatedProductResponse, CartItem } from '../../models';
 import { CartService } from '../../services/cart.service';
@@ -44,7 +44,8 @@ export class ProductComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private cartService: CartService
+    private cartService: CartService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -333,4 +334,20 @@ notifyMe() {
     this.currentPage = 1;
     this.loadProducts();
   }
+
+
+handleAddToCart(product: any, event: Event) {
+  // ✅ السطر ده هو "كلمة السر" لمنع الانتقال لصفحة التفاصيل
+  event.stopPropagation();
+
+  const token = localStorage.getItem('token');
+
+  if (token) {
+    this.cartService.addToCart(product);
+    console.log('Product added to cart');
+  } else {
+    alert('Please login first to add products to your cart!');
+    this.router.navigate(['/login']);
+  }
+}
 }

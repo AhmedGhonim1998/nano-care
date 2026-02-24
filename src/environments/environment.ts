@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://localhost:44353/api'
+  apiUrl: 'https://api.nanocareegypt.com/api'
 };

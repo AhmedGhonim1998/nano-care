@@ -13,26 +13,29 @@ export class OrderService {
   constructor(private http: HttpClient) {}
 
   /**
-   * Create a new order with shipping details and cart items
-   * @param cartItems Current items in the shopping cart
-   * @param shippingAddress Shipping address details (fullName, address, city, phone)
+   * Create a new order with customer info and cart
+   * @param customerInfo Customer details (firstName, lastName, email, address, message)
+   * @param userId User ID from token or guest ID
+   * @param cartId Cart ID to fetch items from
    */
  // src/app/services/order.service.ts
 
-// غير OrderResponseDto لـ Order
-createOrder(customerInfo: any, userId: string): Observable<any> {
+// تأكد إن السطر ده مكتوب كدة بالظبط (3 بارامترات)
+createOrder(customerInfo: any, userId: string, cartId: string): Observable<any> {
   const checkoutDto = {
-    userId: userId,
+    userId: userId,      // المعرف بتاع اليوزر
+    cartId: cartId,      // 👈 السطر ده هو اللي كان ناقص جوه الـ DTO
     firstName: customerInfo.firstName,
     lastName: customerInfo.lastName,
     email: customerInfo.email,
     address: customerInfo.address,
-    extraMessage: customerInfo.message
+    extraMessage: customerInfo.extraMessage || customerInfo.message || "" 
   };
-
+  
+  console.log('📤 Sending Final DTO to Backend:', checkoutDto);
+  
   return this.http.post<any>(`${this.apiUrl}/checkout`, checkoutDto);
 }
-
 
   /**
    * Fetch an order by ID

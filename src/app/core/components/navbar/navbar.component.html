@@ -17,13 +17,14 @@
       
       <!-- Logo -->
       <a routerLink="/" class="flex items-center gap-3 group relative">
-  <div class="relative py-2"> <img src="images/nano_care-removebg-preview.png" 
-         alt="NanoCare" 
-         class="h-28 md:h-36 w-auto object-contain transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 drop-shadow-md">
-    
-    <div class="absolute inset-0 bg-gradient-to-r from-blue-400/30 to-cyan-400/30 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
-  </div>
-</a>
+        <div class="relative py-2">
+          <img src="images/nano_care-removebg-preview.png" 
+               alt="NanoCare" 
+               class="h-28 md:h-36 w-auto object-contain transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 drop-shadow-md">
+          
+          <div class="absolute inset-0 bg-gradient-to-r from-blue-400/30 to-cyan-400/30 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+        </div>
+      </a>
 
       <!-- Desktop Navigation -->
       <div class="hidden lg:flex items-center space-x-1">
@@ -49,15 +50,15 @@
         </a>
         
         <a routerLink="/contact" 
-   routerLinkActive="active-link" 
-   class="relative px-6 py-3 rounded-xl text-sm font-semibold text-gray-700 hover:text-blue-600 transition-all duration-300 group overflow-hidden">
-  
-  <span class="relative z-10">Contact</span>
+           routerLinkActive="active-link" 
+           class="relative px-6 py-3 rounded-xl text-sm font-semibold text-gray-700 hover:text-blue-600 transition-all duration-300 group overflow-hidden">
+          
+          <span class="relative z-10">Contact</span>
 
-  <div class="absolute inset-0 bg-gradient-to-r from-blue-50 to-cyan-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></div>
+          <div class="absolute inset-0 bg-gradient-to-r from-blue-50 to-cyan-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"></div>
 
-  <div class="active-dot absolute bottom-1 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-blue-600 rounded-full opacity-0 transition-all duration-300"></div>
-</a>
+          <div class="active-dot absolute bottom-1 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-blue-600 rounded-full opacity-0 transition-all duration-300"></div>
+        </a>
       </div>
 
       <!-- Right Side Actions -->
@@ -92,11 +93,31 @@
           </div>
         </div>
 
-        <!-- User Account -->
-       
+        <!-- Login & Sign Up Buttons -->
+        <div class="hidden lg:flex items-center gap-2">
+  <ng-container *ngIf="!isLoggedIn()">
+    <button routerLink="/login" 
+            class="px-5 py-2.5 text-sm font-semibold text-gray-700 hover:text-blue-600 hover:bg-blue-50/50 rounded-xl transition-all duration-300">
+      Login
+    </button>
+    
+    <button routerLink="/signup" 
+            class="px-5 py-2.5 bg-gradient-to-r from-blue-600 to-cyan-500 text-white text-sm font-bold rounded-xl hover:from-blue-700 hover:to-cyan-600 shadow-md transition-all duration-300">
+      Sign Up
+    </button>
+  </ng-container>
+
+  <div *ngIf="isLoggedIn()" class="flex items-center gap-2">
+    <button (click)="onLogout()" 
+            class="px-5 py-2.5 text-sm font-semibold text-red-600 hover:bg-red-50 rounded-xl transition-all duration-300">
+      Logout
+    </button>
+  </div>
+</div>
+          
         <!-- Cart -->
-        <button routerLink="/cart" class="relative p-3.5 bg-gradient-to-br from-gray-50 to-white rounded-2xl hover:from-blue-50 hover:to-cyan-50 transition-all duration-300 shadow-sm hover:shadow-md group">
-          <svg class="w-6 h-6 text-gray-700 group-hover:text-blue-600 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<button [routerLink]="isLoggedIn() ? '/cart' : '/login'" 
+        class="relative p-3.5 bg-gradient-to-br from-gray-50 to-white rounded-2xl hover:from-blue-50 hover:to-cyan-50 transition-all duration-300 shadow-sm hover:shadow-md group">          <svg class="w-6 h-6 text-gray-700 group-hover:text-blue-600 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
           </svg>
           <span *ngIf="cartItemCount > 0" class="absolute -top-2 -right-2 bg-gradient-to-r from-blue-600 to-cyan-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-lg">
@@ -235,19 +256,26 @@
 
       <!-- Additional Mobile Items -->
       <div class="mt-6 pt-6 border-t border-gray-200/60 space-y-1">
-        
-        
-        <a routerLink="/orders" (click)="closeMenu()"
-           class="flex items-center gap-4 p-4 rounded-2xl hover:bg-gradient-to-r hover:from-blue-50/80 hover:to-cyan-50/80 transition-all duration-300 group">
-          <div class="p-2.5 bg-blue-50 rounded-xl group-hover:bg-blue-100 transition-colors duration-300">
-            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
-            </svg>
-          </div>
-          <span class="font-bold text-gray-800 group-hover:text-blue-600 transition-colors">My Orders</span>
-        </a>
-      </div>
-    </div>
+  
+  <ng-container *ngIf="!isLoggedIn()">
+    <a routerLink="/login" (click)="closeMenu()" class="flex items-center gap-4 p-4 rounded-2xl hover:bg-blue-50">
+       <span class="font-bold text-gray-800">Login</span>
+    </a>
+    <a routerLink="/signup" (click)="closeMenu()" class="flex items-center gap-4 p-4 rounded-2xl bg-blue-600 text-white">
+       <span class="font-bold">Sign Up</span>
+    </a>
+  </ng-container>
+
+  <ng-container *ngIf="isLoggedIn()">
+    <a routerLink="/orders" (click)="closeMenu()" class="flex items-center gap-4 p-4 rounded-2xl hover:bg-blue-50">
+       <span class="font-bold text-gray-800">My Orders</span>
+    </a>
+    
+    <button (click)="onLogout()" class="w-full flex items-center gap-4 p-4 rounded-2xl text-red-600 hover:bg-red-50">
+       <span class="font-bold">Logout</span>
+    </button>
+  </ng-container>
+</div>
 
     <!-- Footer CTA -->
     <div class="p-6 border-t border-gray-200/60 bg-white/80 backdrop-blur-sm">

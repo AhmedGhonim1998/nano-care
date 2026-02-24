@@ -167,4 +167,18 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.searchResults = [];
     this.isSearchFocused = false;
   }
+
+  // دالة بسيطة تتأكد من وجود التوكن
+// أضف هذا الكود داخل الكلاس في ملف الـ ts
+isLoggedIn(): boolean {
+  // بنحول وجود التوكن لـ true أو false
+  return !!localStorage.getItem('token'); 
+}
+
+onLogout() {
+  localStorage.removeItem('token');
+  // ممكن توجهه للصفحة الرئيسية بعد اللوج أوت
+  this.router.navigate(['/login']);
+  if (this.isMenuOpen) this.closeMenu();
+}
 }

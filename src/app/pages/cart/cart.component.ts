@@ -211,38 +211,49 @@ export class CartComponent implements OnInit {
     return true;
   }
 
- checkout(): void {
+checkout(): void {
+  // 1. التأكد إن السلة مش فاضية
   if (this.cartItems.length === 0) {
     alert('السلة فارغة!');
     return;
   }
 
-  const checkoutPayload = {
-    userId: this.cartService.getCartId(), // أو userId
-    customerInfo: this.customerInfo,
-    items: this.cartItems.map(item => ({
-      productId: item.productId,
-      productName: item.productName,
-      price: item.price,
-      quantity: item.quantity,
-      imageUrl: item.imageUrl
-    }))
-  };
+  // 2. التأكد من صحة بيانات الفورم
+  if (!this.validateCustomerInfo()) {
+    return; 
+  }
 
-  this.orderService.createOrder(checkoutPayload.customerInfo, checkoutPayload.userId)
+  this.isLoading = true;
+
+  // 3. تجهيز البيانات (الـ 3 بارامترات)
+  const customerInfo = this.customerInfo;
+  const userId = this.cartService.getCartId(); // بنستخدم الـ ID اللي في السلة كـ UserId
+  const cartId = this.cartService.getCartId(); // المفتاح اللي السيرفر هيسحب بيه الداتا
+
+  // 4. المناداة بالترتيب الصحيح (customerInfo, userId, cartId)
+  this.orderService.createOrder(customerInfo, userId, cartId)
   .subscribe({
     next: (res) => {
-      console.log('✅ Order Created:', res);
+      console.log('✅ Order Created Successfully:', res);
       alert('تم تسجيل طلبك بنجاح!');
-      this.cartService.clearCart();
-      this.router.navigate(['/orders']);
+      
+      // 5. تنظيف السلة وتوجيه العميل
+      this.cartService.clearCart(); 
+      this.router.navigate(['/home']); 
+      this.isLoading = false;
     },
     error: (err: any) => {
-      console.error('❌ Error details:', err);
+      console.error('❌ Error during checkout:', err);
       this.errorMessage = "حدث خطأ أثناء إتمام الطلب";
+      this.isLoading = false;
+      
+      // نصيحة: لو ظهرلك 400 Bad Request بص على الـ Network tab في المتصفح
+      alert('فشل إتمام الطلب، راجع البيانات وحاول مرة أخرى');
     }
   });
-
 }
+
+
+
 
 }
