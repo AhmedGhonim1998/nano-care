@@ -58,30 +58,38 @@ export class CartComponent implements OnInit {
 
   loadCartItems() {
   this.cartService.getCartItems().subscribe(items => {
-    if (!items) return; // تأمين لو السلة فاضية
+    if (!items) return;
 
     this.cartItems = items.map(item => {
-      // 1. استخراج الداتا بأي مسمى جاية بيه
       const pId = item.productId || (item as any).id || (item as any)._id;
-      const pName = item.productName || (item as any).name;
-      const pImage = (item as any).pictureUrl || item.imageUrl || (item as any).image;
+      const pName = item.productName || (item as any).name || (item as any).productName;
+      
+      // 1. تحديد الصورة الخام
+      let pImage = item.imageUrl || (item as any).image || (item as any).pictureUrl || (item as any).ImageUrl;
 
-      // 2. بناء كائن جديد "نضيف" الـ HTML يقدر يقرأه بسهولة
+      // 2. إصلاح لينك الصورة لو مش كامل
+      if (pImage && !pImage.startsWith('http') && !pImage.startsWith('assets')) {
+        // لو الصورة بتبدأ بـ / شيلها عشان متبقاش //
+        const cleanPath = pImage.startsWith('/') ? pImage : `/${pImage}`;
+        pImage = `https://api.nanocareegypt.com${cleanPath}`;
+      } else if (!pImage) {
+        pImage = 'assets/placeholder.png'; // صورة افتراضية لو مفيش خالص
+      }
+
       return {
         ...item,
-        productId: String(pId),   // توحيد الـ ID
-        productName: pName,       // توحيد الاسم عشان الـ undefined
-        imageUrl: pImage,         // توحيد الصورة
-        price: Number(item.price), // ضمان إن السعر رقم للحسابات
+        productId: String(pId),
+        productName: pName,
+        imageUrl: pImage, // هنا الصورة بقت اللينك الكامل الصح
+        price: Number(item.price),
         quantity: Number(item.quantity),
-        // الخواص الإضافية للـ UI
         tag: (item as any).tag || this.getRandomTag(),
         description: (item as any).description || this.getDescription(pName),
         isBestSeller: (item as any).isBestSeller !== undefined ? (item as any).isBestSeller : Math.random() > 0.5
       };
     });
 
-    this.calculateTotal(); // حساب الإجمالي بعد ما الداتا بقت جاهزة
+    this.calculateTotal();
   });
 }
   getRandomTag(): string {
