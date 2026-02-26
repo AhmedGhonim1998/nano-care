@@ -267,9 +267,7 @@
   </ng-container>
 
   <ng-container *ngIf="isLoggedIn()">
-    <a routerLink="/orders" (click)="closeMenu()" class="flex items-center gap-4 p-4 rounded-2xl hover:bg-blue-50">
-       <span class="font-bold text-gray-800">My Orders</span>
-    </a>
+    
     
     <button (click)="onLogout()" class="w-full flex items-center gap-4 p-4 rounded-2xl text-red-600 hover:bg-red-50">
        <span class="font-bold">Logout</span>
