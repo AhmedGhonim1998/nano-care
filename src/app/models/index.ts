@@ -22,6 +22,14 @@ export interface Product {
   isLimited?: boolean;
   features?: string[];
 
+
+  dosage?: string;
+  indication?: string;
+  warning?: string;
+  packSize?: string;
+
+  gallery?: string[];
+
 }
 
 

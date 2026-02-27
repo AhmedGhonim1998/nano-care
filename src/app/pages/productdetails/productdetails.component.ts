@@ -46,35 +46,29 @@ loadProductFromServer(id: string) {
   const baseUrl = 'https://api.nanocareegypt.com'; // لينك الـ API بتاعك
 
   this.productService.getProductById(id).subscribe({
-    next: (data: any) => {
-      // 1. معالجة الصور الإضافية (Gallery)
-      let galleryImages: string[] = [];
-      if (data.images && Array.isArray(data.images)) {
-        galleryImages = data.images.map((img: string) => 
-          img.startsWith('http') ? img : `${baseUrl}${img.startsWith('/') ? img : '/' + img}`
-        );
-      }
+  next: (data: any) => {
+    const baseUrl = 'https://api.nanocareegypt.com';
 
-      // 2. معالجة الصورة الرئيسية
-      const mainImage = data.imageUrl 
-        ? (data.imageUrl.startsWith('http') ? data.imageUrl : `${baseUrl}${data.imageUrl}`)
-        : 'assets/placeholder.png';
+    // معالجة الجاليري
+    let galleryImages = data.images?.map((img: string) => 
+      img.startsWith('http') ? img : `${baseUrl}${img.startsWith('/') ? img : '/' + img}`
+    ) || [];
 
-      this.product = {
-        ...data,
-        id: data.id,
-        image: mainImage,
-        gallery: galleryImages // ضفنا حقل جديد شايل كل الصور
-      };
+    const mainImage = data.imageUrl 
+      ? (data.imageUrl.startsWith('http') ? data.imageUrl : `${baseUrl}${data.imageUrl}`)
+      : 'assets/placeholder.png';
 
-      this.selectedImage = mainImage;
-      this.isLoading = false;
-    },
-    error: (err) => {
-      console.error(err);
-      this.isLoading = false;
-    }
-  });
+    this.product = {
+      ...data, // دي لوحدها هتسحب Dosage و Warning و Indication و PackSize
+      id: data.id,
+      image: mainImage,
+      gallery: galleryImages.length > 0 ? galleryImages : [mainImage]
+    };
+
+    this.selectedImage = mainImage;
+    this.isLoading = false;
+  }
+});
 }
 
 // ميثود جديدة عشان تجيب كل الصور للعرض في الـ Thumbnails

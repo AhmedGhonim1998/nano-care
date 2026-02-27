@@ -100,6 +100,37 @@
   {{ product.description }}
 </div>
 
+<div class="flex items-center gap-2 mb-4">
+  <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-bold border border-blue-100">
+    <i class="fas fa-box-open mr-1"></i> {{ product?.packSize || '30 Capsules' }}
+  </span>
+</div>
+
+<div class="mt-8 space-y-6">
+  
+  <div *ngIf="product?.indication" class="border-b pb-4">
+    <h3 class="text-slate-900 font-bold mb-2 flex items-center">
+      <span class="w-1.5 h-5 bg-blue-600 rounded-full mr-2"></span> Indications
+    </h3>
+    <p class="text-slate-600 text-sm leading-relaxed">{{ product?.indication }}</p>
+  </div>
+
+  <div *ngIf="product?.dosage" class="bg-slate-50 p-4 rounded-2xl border border-slate-100">
+    <h3 class="text-slate-900 font-bold mb-2 flex items-center text-sm">
+       💊 Dosage & Administration
+    </h3>
+    <p class="text-slate-600 text-sm italic">{{ product?.dosage }}</p>
+  </div>
+
+  <div *ngIf="product?.warning" class="bg-amber-50 p-4 rounded-2xl border border-amber-200">
+    <h3 class="text-amber-800 font-bold mb-1 flex items-center text-sm">
+       ⚠️ Warnings
+    </h3>
+    <p class="text-amber-700 text-xs font-medium">{{ product?.warning }}</p>
+  </div>
+
+</div>
+
 
 <!-- Features List -->
 <div class="max-w-2xl mx-auto p-6 bg-white rounded-2xl shadow-sm border border-slate-100">
