@@ -66,4 +66,19 @@ export class HomeComponent implements OnInit, OnDestroy {
   goToSlide(index: number) {
     this.currentIndex = index;
   }
+
+
+
+  // جوه الكلاس بتاعك
+showVideo: boolean = false;
+
+toggleVideo() {
+  this.showVideo = !this.showVideo;
+  // عشان نمنع الصفحة إنها تعمل Scroll واليوزر بيتفرج
+  if (this.showVideo) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = 'auto';
+  }
+}
 }

@@ -74,15 +74,32 @@
             <div class="absolute top-0 -right-4 w-8 h-full bg-white/20 skew-x-12 group-hover:right-full transition-all duration-700"></div>
           </button>
           
-          <button class="group relative px-6 md:px-10 py-3 md:py-5 bg-white/80 backdrop-blur-sm text-slate-900 rounded-xl md:rounded-2xl font-bold border-2 border-slate-200 hover:border-blue-300 transition-all duration-300 hover:shadow-lg md:hover:shadow-xl">
-            <span class="relative z-10 flex items-center justify-center gap-2">
-              <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 10v4a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-              </svg>
-              <span class="text-sm md:text-base">Watch The Science</span>
-            </span>
-          </button>
+          <button (click)="toggleVideo()" 
+        class="group relative px-6 md:px-10 py-3 md:py-5 bg-white/80 backdrop-blur-sm text-slate-900 rounded-xl md:rounded-2xl font-bold border-2 border-slate-200 hover:border-blue-300 transition-all duration-300 hover:shadow-lg md:hover:shadow-xl">
+  <span class="relative z-10 flex items-center justify-center gap-2">
+    <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 10v4a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+    </svg>
+    <span class="text-sm md:text-base">Watch The Science</span>
+  </span>
+</button>
+
+<div *ngIf="showVideo" 
+     class="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/95 backdrop-blur-xl p-4 pt-24 mt-20"> 
+     <button (click)="toggleVideo()" 
+          class="absolute top-28 right-8 text-white/70 hover:text-white z-[110]">
+    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+    </svg>
+  </button>
+
+  <div class="relative w-full max-w-5xl aspect-video rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-black">
+    <video controls autoplay class="w-full h-full object-contain" src="assets/videos/NanoCare02V01.mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</div>
         </div>
 
         <!-- Stats -->
@@ -110,8 +127,8 @@
             <div class="absolute inset-0 bg-gradient-to-r from-amber-400 to-orange-400 rounded-xl md:rounded-2xl blur-md opacity-50"></div>
             <div class="relative bg-gradient-to-r from-amber-500 to-orange-500 text-white px-3 md:px-4 lg:px-6 py-2 md:py-3 rounded-xl md:rounded-2xl shadow-lg md:shadow-2xl">
               <div class="text-center">
-                <div class="text-lg sm:text-xl md:text-2xl font-black leading-none">10g</div>
-                <div class="text-[8px] sm:text-[10px] font-black uppercase tracking-wider md:tracking-widest mt-0.5 md:mt-1">Pure Collagen</div>
+                <div class="text-lg sm:text-xl md:text-2xl font-black leading-none">500MG</div>
+                <div class="text-[8px] sm:text-[10px] font-black uppercase tracking-wider md:tracking-widest mt-0.5 md:mt-1"> Liposomal Glutathione</div>
               </div>
             </div>
           </div>
@@ -133,11 +150,11 @@
             <div class="absolute bottom-3 sm:bottom-4 md:bottom-6 left-3 sm:left-4 md:left-6 flex flex-col gap-1 sm:gap-2">
               <div class="flex items-center gap-1 sm:gap-2 bg-white/90 backdrop-blur-sm px-2 sm:px-3 md:px-4 py-1.5 md:py-2 rounded-full shadow-md text-xs sm:text-sm">
                 <div class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-emerald-400 rounded-full animate-pulse"></div>
-                <span class="font-bold text-slate-900">Zero Sugar</span>
+                <span class="font-bold text-slate-900">ALA</span>
               </div>
               <div class="flex items-center gap-1 sm:gap-2 bg-white/90 backdrop-blur-sm px-2 sm:px-3 md:px-4 py-1.5 md:py-2 rounded-full shadow-md text-xs sm:text-sm">
                 <div class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-400 rounded-full animate-pulse"></div>
-                <span class="font-bold text-slate-900">Liposomal</span>
+                <span class="font-bold text-slate-900">VIT C</span>
               </div>
             </div>
           </div>
@@ -352,156 +369,179 @@
           <span class="text-blue-600">nutrient delivery</span> 
           since the discovery of vitamins themselves."
         </p>
-        <div class="mt-4 md:mt-6 flex items-center justify-center gap-3">
-          <div class="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full"></div>
-          <div class="text-left">
-            <div class="font-bold text-slate-900">Dr. Nermeen</div>
-            <div class="text-xs md:text-sm text-slate-600">Head of Research, NanoCare Labs</div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Dual Source Section -->
-<section class="relative py-16 md:py-24 lg:py-32 overflow-hidden bg-white">
-  <div class="absolute top-0 left-0 w-full h-24 md:h-32 bg-gradient-to-b from-slate-50 to-transparent"></div>
-  
-  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-center">
-      
-      <!-- Left Content -->
-      <div class="space-y-8 md:space-y-10">
-        <div>
-          <div class="inline-flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 bg-emerald-50 rounded-full mb-4 md:mb-6">
-            <div class="w-1.5 h-1.5 md:w-2 md:h-2 bg-gradient-to-r from-emerald-500 to-green-400 rounded-full"></div>
-            <span class="text-xs font-black tracking-[0.2em] md:tracking-[0.3em] text-emerald-600 uppercase">Synergistic Formula</span>
-          </div>
-          <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 leading-tight">
-            Dual-Source
-            <span class="block bg-gradient-to-r from-emerald-600 to-green-500 bg-clip-text text-transparent">
-              Collagen Matrix
-            </span>
-          </h2>
-          <p class="text-base md:text-lg lg:text-xl text-slate-600 mt-4 md:mt-6 max-w-md leading-relaxed">
-            We engineered a complementary blend that addresses both structural integrity and aesthetic vitality.
-          </p>
-        </div>
 
-        <!-- Marine & Bovine Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-          <div class="group relative">
-            <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-cyan-500/5 rounded-2xl md:rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-            <div class="relative bg-gradient-to-br from-white to-blue-50 rounded-2xl md:rounded-3xl p-6 md:p-8 border border-blue-100 shadow-lg group-hover:shadow-xl md:group-hover:shadow-2xl transition-all duration-500">
-              <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
-                <div class="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-xl md:rounded-2xl flex items-center justify-center">
-                  <svg class="w-6 h-6 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
-                  </svg>
-                </div>
-                <div>
-                  <h4 class="font-black text-slate-900 uppercase tracking-tight text-sm md:text-base">Marine Collagen</h4>
-                  <span class="text-xs font-bold text-blue-600 uppercase tracking-wide md:tracking-widest">Type I</span>
-                </div>
-              </div>
-              <ul class="space-y-2 md:space-y-3">
-                <li class="flex items-center gap-2 md:gap-3 text-slate-600 text-sm md:text-base">
-                  <div class="w-1.5 h-1.5 bg-blue-400 rounded-full"></div>
-                  Superior bioavailability
-                </li>
-                <li class="flex items-center gap-2 md:gap-3 text-slate-600 text-sm md:text-base">
-                  <div class="w-1.5 h-1.5 bg-blue-400 rounded-full"></div>
-                  Skin elasticity & hydration
-                </li>
-                <li class="flex items-center gap-2 md:gap-3 text-slate-600 text-sm md:text-base">
-                  <div class="w-1.5 h-1.5 bg-blue-400 rounded-full"></div>
-                  Hair & nail strength
-                </li>
-              </ul>
-            </div>
-          </div>
+   
+    
 
-          <div class="group relative">
-            <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-green-500/5 rounded-2xl md:rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-            <div class="relative bg-gradient-to-br from-white to-emerald-50 rounded-2xl md:rounded-3xl p-6 md:p-8 border border-emerald-100 shadow-lg group-hover:shadow-xl md:group-hover:shadow-2xl transition-all duration-500">
-              <div class="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
-                <div class="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-gradient-to-r from-emerald-500 to-green-400 rounded-xl md:rounded-2xl flex items-center justify-center">
-                  <svg class="w-6 h-6 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
-                  </svg>
-                </div>
-                <div>
-                  <h4 class="font-black text-slate-900 uppercase tracking-tight text-sm md:text-base">Bovine Collagen</h4>
-                  <span class="text-xs font-bold text-emerald-600 uppercase tracking-wide md:tracking-widest">Type I & III</span>
-                </div>
-              </div>
-              <ul class="space-y-2 md:space-y-3">
-                <li class="flex items-center gap-2 md:gap-3 text-slate-600 text-sm md:text-base">
-                  <div class="w-1.5 h-1.5 bg-emerald-400 rounded-full"></div>
-                  Joint & bone support
-                </li>
-                <li class="flex items-center gap-2 md:gap-3 text-slate-600 text-sm md:text-base">
-                  <div class="w-1.5 h-1.5 bg-emerald-400 rounded-full"></div>
-                  Connective tissue health
-                </li>
-                <li class="flex items-center gap-2 md:gap-3 text-slate-600 text-sm md:text-base">
-                  <div class="w-1.5 h-1.5 bg-emerald-400 rounded-full"></div>
-                  Essential amino acids
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <!-- Right Stats -->
-      <div class="relative mt-8 lg:mt-0">
-        <div class="bg-gradient-to-br from-slate-900 to-blue-900 rounded-3xl md:rounded-[4rem] p-6 md:p-8 lg:p-12 text-white overflow-hidden shadow-xl md:shadow-2xl">
-          <div class="absolute top-0 right-0 w-64 h-64 md:w-96 md:h-96 bg-gradient-to-l from-blue-500/20 to-cyan-500/20 rounded-full blur-2xl md:blur-3xl -mr-32 md:-mr-48 -mt-32 md:-mt-48"></div>
-          
-          <div class="relative z-10 space-y-8 md:space-y-12">
-            <div>
-              <div class="text-5xl sm:text-6xl md:text-7xl font-black text-cyan-400 leading-none">10g</div>
-              <div class="text-sm font-bold uppercase tracking-[0.2em] md:tracking-[0.3em] text-cyan-300 mt-2">Pure Active Collagen</div>
-            </div>
+
+<!-- ===== DUAL SOURCE SECTION – IMPROVED DESIGN ===== -->
+<section class="relative py-20 md:py-28 lg:py-36 overflow-hidden bg-white">
+    <!-- subtle background texture / gradient -->
+    <div class="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-emerald-50/30 pointer-events-none"></div>
+    <!-- soft top fade -->
+    <div class="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-white to-transparent"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- main grid: left content + right premium card -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-16 items-stretch">
             
-            <div class="grid grid-cols-2 gap-6 md:gap-8">
-              <div class="text-center">
-                <div class="text-2xl md:text-3xl font-black mb-2">0%</div>
-                <div class="text-xs font-bold text-blue-300 uppercase tracking-wide md:tracking-widest">Added Sugar</div>
-              </div>
-              <div class="text-center">
-                <div class="text-2xl md:text-3xl font-black mb-2">100%</div>
-                <div class="text-xs font-bold text-blue-300 uppercase tracking-wide md:tracking-widest">Hydrolyzed</div>
-              </div>
+            <!-- LEFT SIDE: HEADLINE + DUAL CARDS (no overlapping image chaos) -->
+            <div class="flex flex-col justify-center space-y-8 md:space-y-10">
+                
+                <!-- Synergistic badge (refined) -->
+                <div class="inline-flex items-center gap-2.5 px-5 py-2.5 bg-emerald-50 rounded-full border border-emerald-200/60 w-fit shadow-sm">
+                    <div class="relative w-2.5 h-2.5">
+                        <div class="absolute inset-0 bg-emerald-500 rounded-full opacity-75 pulse-dot"></div>
+                        <div class="absolute inset-0 bg-emerald-400 rounded-full animate-ping opacity-25"></div>
+                    </div>
+                    <span class="text-[0.7rem] font-black tracking-[0.25em] text-emerald-700 uppercase">Synergistic Formula</span>
+                </div>
+
+                <!-- Headline – cleaner, bolder -->
+                <div>
+                    <h2 class="text-5xl md:text-6xl lg:text-7xl font-black text-slate-900 leading-[1.1] tracking-tight">
+                        Dual‑Source<br>
+                        <span class="bg-gradient-to-r from-emerald-600 via-green-500 to-teal-500 bg-clip-text text-transparent">
+                            Collagen Matrix
+                        </span>
+                    </h2>
+                    <div class="mt-5 max-w-lg">
+                        <p class="text-lg md:text-xl text-slate-600 leading-relaxed">
+                            We engineered a complementary blend that addresses both structural integrity and aesthetic vitality.
+                        </p>
+                        <div class="h-0.5 w-16 bg-emerald-400 rounded-full mt-6"></div>
+                    </div>
+                </div>
+
+                <!-- MARINE & BOVINE CARDS – refined glassmorphism, better icons & spacing -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-4">
+                    <!-- Marine card (blue) -->
+                    <div class="group relative bg-white/90 backdrop-blur-sm rounded-3xl p-6 border border-blue-100/60 shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-cyan-50/30 rounded-3xl -z-10"></div>
+                        <div class="flex items-center gap-4 mb-5">
+                            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-400 shadow-md flex items-center justify-center text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-black text-slate-800 text-lg tracking-tight">Marine Collagen</h4>
+                                <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">Type I</span>
+                            </div>
+                        </div>
+                        <ul class="space-y-3 text-slate-600 text-sm">
+                            <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 bg-blue-400 rounded-full mt-1.5"></span>Superior bioavailability</li>
+                            <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 bg-blue-400 rounded-full mt-1.5"></span>Skin elasticity & hydration</li>
+                            <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 bg-blue-400 rounded-full mt-1.5"></span>Hair & nail strength</li>
+                        </ul>
+                    </div>
+
+                    <!-- Bovine card (emerald) -->
+                    <div class="group relative bg-white/90 backdrop-blur-sm rounded-3xl p-6 border border-emerald-100/60 shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300">
+                        <div class="absolute inset-0 bg-gradient-to-br from-emerald-50/50 to-green-50/30 rounded-3xl -z-10"></div>
+                        <div class="flex items-center gap-4 mb-5">
+                            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-green-400 shadow-md flex items-center justify-center text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-black text-slate-800 text-lg tracking-tight">Bovine Collagen</h4>
+                                <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider">Type I & III</span>
+                            </div>
+                        </div>
+                        <ul class="space-y-3 text-slate-600 text-sm">
+                            <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 bg-emerald-400 rounded-full mt-1.5"></span>Joint & bone support</li>
+                            <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 bg-emerald-400 rounded-full mt-1.5"></span>Connective tissue health</li>
+                            <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 bg-emerald-400 rounded-full mt-1.5"></span>Essential amino acids</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- subtle footnote / trust badge (optional) -->
+                <p class="text-xs text-slate-400 flex items-center gap-1"><span class="w-1 h-1 bg-slate-300 rounded-full"></span>grass-fed bovine · wild-caught marine</p>
             </div>
 
-            <div class="space-y-3 md:space-y-4">
-              <div class="flex items-center justify-between">
-                <span class="text-sm font-bold text-blue-300">Stevia Sweetened</span>
-                <div class="w-16 md:w-24 h-2 bg-blue-800 rounded-full overflow-hidden">
-                  <div class="h-full bg-gradient-to-r from-emerald-400 to-green-400 rounded-full" style="width: 100%"></div>
-                </div>
-              </div>
-              <div class="flex items-center justify-between">
-                <span class="text-sm font-bold text-blue-300">Keto-Friendly</span>
-                <div class="w-16 md:w-24 h-2 bg-blue-800 rounded-full overflow-hidden">
-                  <div class="h-full bg-gradient-to-r from-amber-400 to-orange-400 rounded-full" style="width: 100%"></div>
-                </div>
-              </div>
-            </div>
+            <!-- RIGHT SIDE: INTEGRATED IMAGE + STATS CARD (dark premium vibe, but fresh) -->
+            <div class="flex items-stretch">
+                <div class="relative w-full bg-gradient-to-br from-slate-900 to-blue-900 rounded-4xl md:rounded-[3.5rem] p-8 md:p-10 shadow-2xl overflow-hidden border border-white/10">
+                    <!-- abstract glow background -->
+                    <div class="absolute -top-20 -right-20 w-80 h-80 bg-gradient-to-l from-emerald-400/20 to-cyan-400/20 rounded-full blur-3xl"></div>
+                    <div class="absolute -bottom-20 -left-20 w-80 h-80 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-3xl"></div>
+                    
+                    <div class="relative z-10 flex flex-col items-center text-center">
+                        <!-- PRODUCT IMAGE – floating, with elegant backdrop -->
+                        <div class="relative mb-6 -mt-4">
+                            <div class="absolute inset-0 bg-emerald-300/30 blur-[60px] rounded-full scale-150"></div>
+                            <img src="assets/coverImages/coming-soon-placeholder.png" 
+                                 alt="Nano Care Collagen" 
+                                 class="relative z-10 w-56 md:w-64 h-auto object-contain drop-shadow-2xl animate-float">
+                        </div>
 
-            <button routerLink="/products" 
-                    class="w-full py-4 md:py-5 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-xl md:rounded-2xl font-black uppercase tracking-wide md:tracking-widest text-sm hover:from-cyan-600 hover:to-blue-600 transition-all shadow-lg md:shadow-xl shadow-cyan-500/20">
-              Experience The Difference
-            </button>
-          </div>
+                        <!-- 10g stat – large & bold -->
+                        <div class="mb-4">
+                            <span class="text-7xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-emerald-200 leading-none mb-4">10g</span>
+                            <p class="text-sm font-bold uppercase tracking-[0.25em] text-cyan-200/80 mt-5">Pure Active Collagen</p>
+                        </div>
+
+                        <!-- mini stat boxes (0% / 100%) -->
+                        <div class="grid grid-cols-2 gap-4 w-full max-w-xs mx-auto mt-2">
+                            <div class="bg-white/10 backdrop-blur-sm rounded-2xl py-4 px-2 border border-white/10">
+                                <span class="block text-3xl font-black text-white">0%</span>
+                                <span class="text-[0.65rem] font-bold text-cyan-200 uppercase tracking-wider">Added Sugar</span>
+                            </div>
+                            <div class="bg-white/10 backdrop-blur-sm rounded-2xl py-4 px-2 border border-white/10">
+                                <span class="block text-3xl font-black text-white">100%</span>
+                                <span class="text-[0.65rem] font-bold text-cyan-200 uppercase tracking-wider">Hydrolyzed</span>
+                            </div>
+                        </div>
+
+                        <!-- progress bars (stevia / keto) with better readability -->
+                        <div class="w-full mt-8 space-y-4">
+                            <div class="w-full">
+                                <div class="flex justify-between text-sm text-cyan-100 font-semibold mb-1">
+                                    <span>Stevia Sweetened</span>
+                                    <span>100%</span>
+                                </div>
+                                <div class="w-full h-2.5 bg-slate-700 rounded-full overflow-hidden">
+                                    <div class="h-full w-full bg-gradient-to-r from-emerald-400 to-green-400 rounded-full"></div>
+                                </div>
+                            </div>
+                            <div class="w-full">
+                                <div class="flex justify-between text-sm text-cyan-100 font-semibold mb-1">
+                                    <span>Keto-Friendly</span>
+                                    <span>100%</span>
+                                </div>
+                                <div class="w-full h-2.5 bg-slate-700 rounded-full overflow-hidden">
+                                    <div class="h-full w-full bg-gradient-to-r from-amber-400 to-orange-400 rounded-full"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CTA button – refined gradient -->
+                        <button class="w-full mt-10 py-5 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-2xl font-black uppercase tracking-[0.2em] text-sm shadow-2xl shadow-cyan-500/20 hover:scale-[1.02] hover:shadow-cyan-500/40 transition-all duration-300">
+                            Experience The Difference
+                        </button>
+                        
+                        <!-- micro tagline -->
+                        <p class="text-xs text-blue-300/60 mt-4">dual-action · type I & III</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+
+    <!-- extra decorative wave at bottom (optional) -->
+    <div class="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-slate-100 to-transparent pointer-events-none"></div>
 </section>
+
+<!-- tiny note: the image placeholder is kept, but in a refined context -->
+
 
 <!-- Vision Section -->
 <section class="relative py-16 md:py-24 lg:py-32 overflow-hidden bg-gradient-to-b from-white to-slate-50">
