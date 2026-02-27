@@ -39,34 +39,50 @@ export class ProductdetailsComponent implements OnInit {
     });
   }
 
+// داخل loadProductFromServer في ملف الـ component.ts
+
 loadProductFromServer(id: string) {
   this.isLoading = true;
+  const baseUrl = 'https://api.nanocareegypt.com'; // لينك الـ API بتاعك
 
   this.productService.getProductById(id).subscribe({
-    next: (data) => {
+    next: (data: any) => {
+      // 1. معالجة الصور الإضافية (Gallery)
+      let galleryImages: string[] = [];
+      if (data.images && Array.isArray(data.images)) {
+        galleryImages = data.images.map((img: string) => 
+          img.startsWith('http') ? img : `${baseUrl}${img.startsWith('/') ? img : '/' + img}`
+        );
+      }
+
+      // 2. معالجة الصورة الرئيسية
+      const mainImage = data.imageUrl 
+        ? (data.imageUrl.startsWith('http') ? data.imageUrl : `${baseUrl}${data.imageUrl}`)
+        : 'assets/placeholder.png';
 
       this.product = {
-  id: data.id,
-  name: data.name,
-  price: data.price,
-  description: data.description ?? '',
-  features: data.features ?? [],
-  categoryId: data.categoryId ?? '',
-  image: data.imageUrl 
-    ? `https://api.nanocareegypt.com${data.imageUrl}`
-    : 'assets/placeholder.png'
-};
+        ...data,
+        id: data.id,
+        image: mainImage,
+        gallery: galleryImages // ضفنا حقل جديد شايل كل الصور
+      };
 
-
-      this.selectedImage = this.product.image!;
+      this.selectedImage = mainImage;
       this.isLoading = false;
     },
-
     error: (err) => {
       console.error(err);
       this.isLoading = false;
     }
   });
+}
+
+// ميثود جديدة عشان تجيب كل الصور للعرض في الـ Thumbnails
+getGallery(): string[] {
+  // لو الـ gallery موجود رجعه، لو لأ رجع الصورة الرئيسية في مصفوفة
+  return (this.product as any)?.gallery?.length > 0 
+    ? (this.product as any).gallery 
+    : [this.selectedImage];
 }
 
 
