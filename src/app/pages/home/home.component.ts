@@ -22,6 +22,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     'assets/coverImages/nanocare2.jpg'
   ];
 
+  showImageModal: boolean = false;
+  toggleImage() {
+  this.showImageModal = !this.showImageModal;
+  // منع السكرول لما الصورة تفتح
+  document.body.style.overflow = this.showImageModal ? 'hidden' : 'auto';
+}
+
   currentIndex = 0;
   isAutoPlaying = true;
   autoPlayInterval: any;
