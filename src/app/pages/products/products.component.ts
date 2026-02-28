@@ -350,4 +350,13 @@ handleAddToCart(product: any, event: Event) {
     this.router.navigate(['/login']);
   }
 }
+
+// أضف هذه القائمة في الكلاس بتاعك
+upcomingProducts = [
+  { name: 'multicollagen 10 Sachets', desc: 'Type I, II, III, V & X for total body support.' , Images: 'assets/coverImages/coming-soon-placeholder.png'},
+  { name: 'liposomal Iron 30 Sachets', desc: 'Maximum strength formula for hair and nail vitality.' ,Images: 'assets/coverImages/iron.JPG'},
+  { name: 'liposomal C 30 Sachets', desc: 'Enhanced absorption for immune system excellence.' , Images: 'assets/coverImages/liposomalC.JPG'},
+  { name: 'liposomal D3/K2 30 Sachets', desc: 'Natural blend for deep sleep and muscle repair.' , Images: 'assets/coverImages/liposomalD.JPG'}
+  
+];
 }
