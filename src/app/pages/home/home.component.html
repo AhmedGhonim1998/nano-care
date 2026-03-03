@@ -219,7 +219,6 @@
         <div class="mt-4 sm:mt-6 md:mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 md:gap-8 bg-white/80 backdrop-blur-md p-3 sm:p-4 md:p-6 rounded-xl md:rounded-2xl border border-slate-100 shadow-lg md:shadow-xl">
           <div class="text-center">
             <div class="text-lg sm:text-xl md:text-2xl font-black text-slate-900">ِALA</div>
-            <div class="text-xs text-slate-600 uppercase tracking-wider md:tracking-widest font-bold">Type I Collagen</div>
           </div>
           <div class="relative">
             <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full flex items-center justify-center">
@@ -233,7 +232,6 @@
           </div>
           <div class="text-center">
             <div class="text-lg sm:text-xl md:text-2xl font-black text-slate-900">VITC</div>
-            <div class="text-xs text-slate-600 uppercase tracking-wider md:tracking-widest font-bold">Type I & III</div>
           </div>
         </div>
       </div>
@@ -419,6 +417,74 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-16 items-stretch">
             
             <!-- LEFT SIDE: HEADLINE + DUAL CARDS (no overlapping image chaos) -->
+            
+
+            <div class="flex items-stretch">
+                <div class="relative w-full bg-gradient-to-br from-slate-900 to-blue-900 rounded-4xl md:rounded-[3.5rem] p-8 md:p-10 shadow-2xl overflow-hidden border border-white/10">
+                    <!-- abstract glow background -->
+                    <div class="absolute -top-20 -right-20 w-80 h-80 bg-gradient-to-l from-emerald-400/20 to-cyan-400/20 rounded-full blur-3xl"></div>
+                    <div class="absolute -bottom-20 -left-20 w-80 h-80 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-3xl"></div>
+                    
+                    <div class="relative z-10 flex flex-col items-center text-center">
+                        <!-- PRODUCT IMAGE – floating, with elegant backdrop -->
+                        <div class="relative mb-6 -mt-4">
+                            <div class="absolute inset-0 bg-emerald-300/30 blur-[60px] rounded-full scale-150"></div>
+                            <img src="assets/coverImages/coming-soon-placeholder.png" 
+                                 alt="Nano Care Collagen" 
+                                 class="relative z-10 w-56 md:w-64 h-auto object-contain drop-shadow-2xl animate-float">
+                        </div>
+
+                        <!-- 10g stat – large & bold -->
+                        <div class="mb-4">
+                            <span class="text-7xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-emerald-200 leading-none mb-4">10g</span>
+                            <p class="text-sm font-bold uppercase tracking-[0.25em] text-cyan-200/80 mt-5">Pure Active Collagen</p>
+                        </div>
+
+                        <!-- mini stat boxes (0% / 100%) -->
+                        <div class="grid grid-cols-2 gap-4 w-full max-w-xs mx-auto mt-2">
+                            <div class="bg-white/10 backdrop-blur-sm rounded-2xl py-4 px-2 border border-white/10">
+                                <span class="block text-3xl font-black text-white">0%</span>
+                                <span class="text-[0.65rem] font-bold text-cyan-200 uppercase tracking-wider">Added Sugar</span>
+                            </div>
+                            <div class="bg-white/10 backdrop-blur-sm rounded-2xl py-4 px-2 border border-white/10">
+                                <span class="block text-3xl font-black text-white">100%</span>
+                                <span class="text-[0.65rem] font-bold text-cyan-200 uppercase tracking-wider">Hydrolyzed</span>
+                            </div>
+                        </div>
+
+                        <!-- progress bars (stevia / keto) with better readability -->
+                        <div class="w-full mt-8 space-y-4">
+                            <div class="w-full">
+                                <div class="flex justify-between text-sm text-cyan-100 font-semibold mb-1">
+                                    <span>Stevia Sweetened</span>
+                                    <span>100%</span>
+                                </div>
+                                <div class="w-full h-2.5 bg-slate-700 rounded-full overflow-hidden">
+                                    <div class="h-full w-full bg-gradient-to-r from-emerald-400 to-green-400 rounded-full"></div>
+                                </div>
+                            </div>
+                            <div class="w-full">
+                                <div class="flex justify-between text-sm text-cyan-100 font-semibold mb-1">
+                                    <span>Keto-Friendly</span>
+                                    <span>100%</span>
+                                </div>
+                                <div class="w-full h-2.5 bg-slate-700 rounded-full overflow-hidden">
+                                    <div class="h-full w-full bg-gradient-to-r from-amber-400 to-orange-400 rounded-full"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CTA button – refined gradient -->
+                        <button class="w-full mt-10 py-5 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-2xl font-black uppercase tracking-[0.2em] text-sm shadow-2xl shadow-cyan-500/20 hover:scale-[1.02] hover:shadow-cyan-500/40 transition-all duration-300">
+                            Experience The Difference
+                        </button>
+                        
+                        <!-- micro tagline -->
+                        <p class="text-xs text-blue-300/60 mt-4">dual-action · type I & III</p>
+                    </div>
+                </div>
+            </div>
+            <!-- RIGHT SIDE: INTEGRATED IMAGE + STATS CARD (dark premium vibe, but fresh) -->
             <div class="flex flex-col justify-center space-y-8 md:space-y-10">
                 
                 <!-- Synergistic badge (refined) -->
@@ -492,73 +558,6 @@
                 </div>
                 <!-- subtle footnote / trust badge (optional) -->
                 <p class="text-xs text-slate-400 flex items-center gap-1"><span class="w-1 h-1 bg-slate-300 rounded-full"></span>grass-fed bovine · wild-caught marine</p>
-            </div>
-
-            <!-- RIGHT SIDE: INTEGRATED IMAGE + STATS CARD (dark premium vibe, but fresh) -->
-            <div class="flex items-stretch">
-                <div class="relative w-full bg-gradient-to-br from-slate-900 to-blue-900 rounded-4xl md:rounded-[3.5rem] p-8 md:p-10 shadow-2xl overflow-hidden border border-white/10">
-                    <!-- abstract glow background -->
-                    <div class="absolute -top-20 -right-20 w-80 h-80 bg-gradient-to-l from-emerald-400/20 to-cyan-400/20 rounded-full blur-3xl"></div>
-                    <div class="absolute -bottom-20 -left-20 w-80 h-80 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-3xl"></div>
-                    
-                    <div class="relative z-10 flex flex-col items-center text-center">
-                        <!-- PRODUCT IMAGE – floating, with elegant backdrop -->
-                        <div class="relative mb-6 -mt-4">
-                            <div class="absolute inset-0 bg-emerald-300/30 blur-[60px] rounded-full scale-150"></div>
-                            <img src="assets/coverImages/coming-soon-placeholder.png" 
-                                 alt="Nano Care Collagen" 
-                                 class="relative z-10 w-56 md:w-64 h-auto object-contain drop-shadow-2xl animate-float">
-                        </div>
-
-                        <!-- 10g stat – large & bold -->
-                        <div class="mb-4">
-                            <span class="text-7xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-emerald-200 leading-none mb-4">10g</span>
-                            <p class="text-sm font-bold uppercase tracking-[0.25em] text-cyan-200/80 mt-5">Pure Active Collagen</p>
-                        </div>
-
-                        <!-- mini stat boxes (0% / 100%) -->
-                        <div class="grid grid-cols-2 gap-4 w-full max-w-xs mx-auto mt-2">
-                            <div class="bg-white/10 backdrop-blur-sm rounded-2xl py-4 px-2 border border-white/10">
-                                <span class="block text-3xl font-black text-white">0%</span>
-                                <span class="text-[0.65rem] font-bold text-cyan-200 uppercase tracking-wider">Added Sugar</span>
-                            </div>
-                            <div class="bg-white/10 backdrop-blur-sm rounded-2xl py-4 px-2 border border-white/10">
-                                <span class="block text-3xl font-black text-white">100%</span>
-                                <span class="text-[0.65rem] font-bold text-cyan-200 uppercase tracking-wider">Hydrolyzed</span>
-                            </div>
-                        </div>
-
-                        <!-- progress bars (stevia / keto) with better readability -->
-                        <div class="w-full mt-8 space-y-4">
-                            <div class="w-full">
-                                <div class="flex justify-between text-sm text-cyan-100 font-semibold mb-1">
-                                    <span>Stevia Sweetened</span>
-                                    <span>100%</span>
-                                </div>
-                                <div class="w-full h-2.5 bg-slate-700 rounded-full overflow-hidden">
-                                    <div class="h-full w-full bg-gradient-to-r from-emerald-400 to-green-400 rounded-full"></div>
-                                </div>
-                            </div>
-                            <div class="w-full">
-                                <div class="flex justify-between text-sm text-cyan-100 font-semibold mb-1">
-                                    <span>Keto-Friendly</span>
-                                    <span>100%</span>
-                                </div>
-                                <div class="w-full h-2.5 bg-slate-700 rounded-full overflow-hidden">
-                                    <div class="h-full w-full bg-gradient-to-r from-amber-400 to-orange-400 rounded-full"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- CTA button – refined gradient -->
-                        <button class="w-full mt-10 py-5 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-2xl font-black uppercase tracking-[0.2em] text-sm shadow-2xl shadow-cyan-500/20 hover:scale-[1.02] hover:shadow-cyan-500/40 transition-all duration-300">
-                            Experience The Difference
-                        </button>
-                        
-                        <!-- micro tagline -->
-                        <p class="text-xs text-blue-300/60 mt-4">dual-action · type I & III</p>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../../services/cart.service';
@@ -8,7 +8,7 @@ import { CartService } from '../../services/cart.service';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule], // مهم جداً لاستخدام الفورم
+  imports: [ReactiveFormsModule, CommonModule, RouterLink], // مهم جداً لاستخدام الفورم
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
@@ -16,6 +16,7 @@ export class LoginComponent {
   loginForm: FormGroup;
   isLoading = false;
   errorMessage: string = '';
+//signup: string|any[]|UrlTree|null|undefined;
 
   constructor(
     private fb: FormBuilder,
