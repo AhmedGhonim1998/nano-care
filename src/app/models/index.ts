@@ -60,6 +60,7 @@ export interface ShippingAddress {
   address: string;
   city: string;
   phone: string;
+   phoneNumber: string; 
 }
 
 export interface OrderItem {

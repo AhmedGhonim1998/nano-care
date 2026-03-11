@@ -20,6 +20,7 @@ interface CustomerInfo {
   email: string;
   address: string;
   message: string;
+  phoneNumber: string;
 }
 
 @Component({
@@ -43,7 +44,8 @@ export class CartComponent implements OnInit {
     lastName: '',
     email: '',
     address: '',
-    message: ''
+    message: '',
+    phoneNumber: '' 
   };
 
   constructor(
@@ -147,18 +149,16 @@ export class CartComponent implements OnInit {
     }
   }
 
-  isFormValid(): boolean {
-    // Check required fields
-    const hasFirstName = this.customerInfo.firstName.trim().length > 0;
-    const hasLastName = this.customerInfo.lastName.trim().length > 0;
-    const hasEmail = this.customerInfo.email.trim().length > 0;
-    const hasAddress = this.customerInfo.address.trim().length > 0;
-    
-    // Basic email validation
-    const isEmailValid = this.isEmailValid();
-    
-    return hasFirstName && hasLastName && hasEmail && hasAddress && isEmailValid;
-  }
+ isFormValid(): boolean {
+  const hasFirstName = this.customerInfo.firstName.trim().length > 0;
+  const hasLastName = this.customerInfo.lastName.trim().length > 0;
+  const hasEmail = this.customerInfo.email.trim().length > 0;
+  const hasAddress = this.customerInfo.address.trim().length > 0;
+  const hasPhone = this.customerInfo.phoneNumber.trim().length > 0; // ✅ جديد
+  const isEmailValid = this.isEmailValid();
+  
+  return hasFirstName && hasLastName && hasEmail && hasAddress && hasPhone && isEmailValid;
+}
 
   isEmailValid(): boolean {
     if (!this.customerInfo.email.trim()) {
@@ -204,6 +204,11 @@ export class CartComponent implements OnInit {
       alert('Please enter your last name');
       return false;
     }
+
+    if (!this.customerInfo.phoneNumber.trim()) {
+  alert('Please enter your phone number');
+  return false;
+}
 
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!this.customerInfo.email.trim() || !emailPattern.test(this.customerInfo.email)) {

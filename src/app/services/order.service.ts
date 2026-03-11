@@ -23,14 +23,15 @@ export class OrderService {
 // تأكد إن السطر ده مكتوب كدة بالظبط (3 بارامترات)
 createOrder(customerInfo: any, userId: string, cartId: string): Observable<any> {
   const checkoutDto = {
-    userId: userId,      // المعرف بتاع اليوزر
-    cartId: cartId,      // 👈 السطر ده هو اللي كان ناقص جوه الـ DTO
-    firstName: customerInfo.firstName,
-    lastName: customerInfo.lastName,
-    email: customerInfo.email,
-    address: customerInfo.address,
-    extraMessage: customerInfo.extraMessage || customerInfo.message || "" 
-  };
+  userId: userId,
+  cartId: cartId,
+  firstName: customerInfo.firstName,
+  lastName: customerInfo.lastName,
+  email: customerInfo.email,
+  address: customerInfo.address,
+  phoneNumber: customerInfo.phoneNumber, // ✅ جديد
+  extraMessage: customerInfo.extraMessage || customerInfo.message || ""
+};
   
   console.log('📤 Sending Final DTO to Backend:', checkoutDto);
   
